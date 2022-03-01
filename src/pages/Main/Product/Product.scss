@@ -14,9 +14,14 @@
     height: 250px;
   }
 
+  .productImage:hover {
+    transform: scale(1.1, 1.1);
+  }
+
   .productName {
-    margin-top: 20px;
+    margin-top: 15px;
     font-weight: 700;
+    color: $black;
   }
 
   .priceInfo {
@@ -59,7 +64,6 @@
       margin-left: 10px;
       background-color: lightgray;
       border-radius: 20px;
-      font-weight: 700;
     }
   }
 }
