@@ -1,0 +1,65 @@
+@import '/src/styles/variables.scss';
+
+.Product {
+  display: flex;
+  flex-direction: column;
+  margin: 70px 20px 0 0;
+
+  p {
+    line-height: 250%;
+  }
+
+  .productImage {
+    width: 250px;
+    height: 250px;
+  }
+
+  .productName {
+    margin-top: 20px;
+    font-weight: 700;
+  }
+
+  .priceInfo {
+    font-size: 15px;
+
+    .discountRate {
+      color: #ea565e;
+      font-weight: 700;
+    }
+
+    .productPrice {
+      margin: 0 10px 0 5px;
+      color: gray;
+      text-decoration: line-through;
+    }
+
+    .discountedPrice {
+      font-weight: 700;
+    }
+  }
+
+  .otherInfo {
+    display: flex;
+    align-items: center;
+    font-size: 11px;
+    line-height: normal;
+
+    .productSize {
+      display: inline-block;
+      padding: 3px 5px;
+      margin-right: 3px;
+      background-color: $yellow;
+      border-radius: 20px;
+      color: white;
+    }
+
+    .delivery {
+      display: inline-block;
+      padding: 5px 8px;
+      margin-left: 10px;
+      background-color: lightgray;
+      border-radius: 20px;
+      font-weight: 700;
+    }
+  }
+}
