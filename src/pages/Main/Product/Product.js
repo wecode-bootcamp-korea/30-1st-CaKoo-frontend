@@ -3,7 +3,7 @@ import './Product.scss';
 
 function Product() {
   return (
-    <article className="Product">
+    <article className="product">
       <Link to="/product-detail">
         <img
           alt="상품 미리보기(샘플)"

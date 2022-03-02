@@ -1,0 +1,23 @@
+.banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 300px;
+  width: 100%;
+  padding: 0 160px;
+  background-image: url('https://github.com/Pbang91/cakooimage/blob/main/images/%E1%84%87%E1%85%A2%E1%84%82%E1%85%A5%E1%84%8B%E1%85%AD%E1%86%BC.jpeg?raw=true');
+  background-size: cover;
+  background-position: center;
+
+  p {
+    color: white;
+    font-size: 18px;
+    line-height: 150%;
+  }
+
+  .bannerTitle {
+    margin-bottom: 18px;
+    font-size: 30px;
+    font-weight: 700;
+  }
+}
