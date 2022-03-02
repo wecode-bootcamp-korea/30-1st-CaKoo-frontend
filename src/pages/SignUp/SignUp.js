@@ -3,16 +3,16 @@ import './SignUp.scss';
 // Component 전체는 PascalCase
 // 그 밑은 camelCase
 
-function SignUp() {
+function signUp() {
   return (
-    <main className="SignUp">
+    <main className="signUp">
       <header className="signUpHeader">
         <h1 className="signUpTitle">회원가입</h1>
       </header>
       <fieldset>
         <form className="signUpForm">
           <div className="row">
-            <label>이메일 (아이디)</label>
+            <label>이메일(아이디)</label>
             <input type="text" placeholder="예) cakoo@cakoo.com" id="email" />
             <button type="button" disabled>
               중복확인
@@ -60,65 +60,64 @@ function SignUp() {
             </button>
           </div>
           <div className="row">
-            <label>생년월일</label>
-            <input type="text" placeholder="년도) 1999" id="birthYear" />
-            <input type="text" placeholder="월" id="birthMonth" />
-            <input type="text" placeholder="일" id="birthDay" />
-          </div>
-          <div className="row">
-            <label>성별</label>
-            <input type="button" value="여성" id="sexFemale" />
-            <input type="button" value="남성" id="sexMale" />
+            <label className="birthTitle">생년월일</label>
+            <div className="birth">
+              <input type="text" placeholder="년도) 1999" id="birthYear" />
+              <input type="text" placeholder="월" id="birthMonth" />
+              <input type="text" placeholder="일" id="birthDay" />
+            </div>
           </div>
           <hr />
           <div className="termConditionBox">
             <span className="termConditionAgree">이용약관 동의</span>
-            <ul className="agreeList">
-              <li className="list">
-                <label className="conditionTrue">
-                  <span>모두 동의합니다.</span>
-                  <input type="checkbox" />
-                  <span className="boxIcon" />
-                </label>
-              </li>
-              <li className="list">
-                <label className="conditionTrue">
-                  <span>
-                    이용약관 동의
-                    <b>(필수)</b>
-                  </span>
-                  <input type="checkbox" />
-                  <span className="boxIcon" />
-                </label>
-              </li>
-              <li className="list">
-                <label className="conditionTrue">
-                  <span>
-                    개인정보 수집, 이용동의
-                    <b>(필수)</b>
-                  </span>
-                  <input type="checkbox" />
-                  <span className="boxIcon" />
-                </label>
-              </li>
-              <li className="list">
-                <label className="conditionTrue">
-                  <span>
-                    개인정보 이용 동의
-                    <b>(필수)</b>
-                  </span>
-                  <input type="checkbox" />
-                  <span className="boxIcon" />
-                </label>
-              </li>
-              <li className="list">
-                <label className="conditionTrue">
-                  <span>이벤트, 혜택정보 수신 동의 (선택)</span>
-                  <input type="checkbox" />
-                  <span className="boxIcon" />
-                </label>
-              </li>
-            </ul>
+            <div>
+              <ul className="agreeList">
+                <li className="list">
+                  <label className="conditionTrue">
+                    <span>모두 동의합니다.</span>
+                    <input type="checkbox" />
+                    <span className="boxIcon" />
+                  </label>
+                </li>
+                <li className="list">
+                  <label className="conditionTrue">
+                    <span>
+                      이용약관 동의
+                      <b>(필수)</b>
+                    </span>
+                    <input type="checkbox" />
+                    <span className="boxIcon" />
+                  </label>
+                </li>
+                <li className="list">
+                  <label className="conditionTrue">
+                    <span>
+                      개인정보 수집, 이용동의
+                      <b>(필수)</b>
+                    </span>
+                    <input type="checkbox" />
+                    <span className="boxIcon" />
+                  </label>
+                </li>
+                <li className="list">
+                  <label className="conditionTrue">
+                    <span>
+                      개인정보 이용 동의
+                      <b>(필수)</b>
+                    </span>
+                    <input type="checkbox" />
+                    <span className="boxIcon" />
+                  </label>
+                </li>
+                <li className="list">
+                  <label className="conditionTrue">
+                    <span>이벤트, 혜택정보 수신 동의 (선택)</span>
+                    <input type="checkbox" />
+                    <span className="boxIcon" />
+                  </label>
+                </li>
+              </ul>
+            </div>
           </div>
           <div className="agreeTerms">
             <button type="button" className="btn">
@@ -135,4 +134,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default signUp;
