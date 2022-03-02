@@ -3,7 +3,7 @@ import './Nav.scss';
 
 function Nav() {
   return (
-    <nav className="Nav">
+    <nav className="nav">
       <Link to="/">
         <img
           alt="cakoo 로고"
