@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Product.scss';
 
-function Product() {
+function Product({ name, price, description }) {
   return (
     <article className="product">
       <Link to="/product-detail">
@@ -11,14 +11,14 @@ function Product() {
           src="/img/sophie/strawberry_biscuit_cake.jpeg"
         />
       </Link>
-      <span className="productInfo">특별한 날 추천하는,</span>
+      <span className="productInfo">{description}</span>
       <Link to="/product-detail" className="productName">
-        마카롱 무화과 케이크
+        {name}
       </Link>
       <p className="priceInfo">
         <span className="discountRate">10%</span>
-        <span className="productPrice">32,000원</span>
-        <span className="discountedPrice">28,800원</span>
+        <span className="productPrice">{`${price}원`}</span>
+        <span className="discountedPrice">{`${price * 0.9}원`}</span>
       </p>
       <p className="otherInfo">
         <span className="productSize">1호</span>
