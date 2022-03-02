@@ -24,7 +24,7 @@ function Footer() {
             />
           </div>
           <p className="callcenter">
-            <span className="bigFont">케이쿠 고객센터 1661-1031 </span>
+            <span className="bigFont">케이쿠 고객센터 1997-1122 </span>
             <span className="smallFont">
               (평일 10:00-13:00, 14:00-18:00 / 주말 & 공휴일 제외)
             </span>

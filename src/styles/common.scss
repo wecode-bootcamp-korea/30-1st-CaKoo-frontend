@@ -1,3 +1,4 @@
+@import '/src/styles/variables.scss';
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
 
 * {
@@ -5,9 +6,21 @@
 
   body {
     font-family: 'Nanum Gothic', sans-serif;
+    background-color: #fefeff;
+    color: $black;
+
+    p {
+      line-height: normal;
+    }
 
     a {
       text-decoration: none;
+      color: $black;
+    }
+
+    a:hover,
+    button:hover {
+      cursor: pointer;
     }
 
     button {

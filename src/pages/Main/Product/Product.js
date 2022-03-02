@@ -8,9 +8,10 @@ function Product() {
         <img
           alt="상품 미리보기(샘플)"
           className="productImage"
-          src="https://github.com/Pbang91/cakooimage/blob/main/images/macaroncake.jpeg?raw=true"
+          src="/img/sophie/strawberry_biscuit_cake.jpeg"
         />
       </Link>
+      <span className="productInfo">특별한 날 추천하는,</span>
       <Link to="/product-detail" className="productName">
         마카롱 무화과 케이크
       </Link>
