@@ -3,26 +3,27 @@ import './Login.scss';
 
 function Login() {
   return (
-    <div className="login">
-      <div className="loginContainer">
+    <div className="logIn">
+      <div className="logInContainer">
         <h2>로그인</h2>
-        <div class="loginForm">
-          <form className="loginInput">
+        <div class="logInForm">
+          <form className="logInInput">
             <input
-              className="loginInput;"
+              className="logInInput;"
               type="text"
               placeholder="아이디(이메일)"
             />
             <input
-              className="loginInputPw"
+              className="logInInputPw"
               type="text"
               placeholder="비밀번호"
             />
             <input className="checkBox" type="checked" />
             <p>아이디 저장</p>
-            <button className="Button">로그인</button>
+            <button className="button">로그인</button>
           </form>
-          <div className="forgotId">
+          <div className="forGotContainer" />
+          <div className="forGotId">
             <a
               href="https://kukka.kr/account/login/?next=/"
               className="forgotId"
@@ -31,10 +32,10 @@ function Login() {
               아이디찾기
             </a>
           </div>
-          <div className="forgotPw">
+          <div className="forGotPw">
             <a
               href="https://kukka.kr/account/find-password/"
-              className="forgotPw"
+              className="forGotPw"
               alt="비밀번호 찾기"
             >
               비밀번호 찾기

@@ -1,64 +1,96 @@
 @import '/src/styles/variables.scss';
 
-.login {
-  width: 100%;
-  height: 100%;
-  margin-top: 50px;
-  padding-left: 100px;
+.logIn {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #ececec;
-  border: 1px solid red;
+  background-color: #ffffff;
 
-  .loginContainer {
-    margin-top: 50px;
-    padding: 30px;
+  .logInContainer {
+    height: 100%;
+    margin-top: 20px;
+    padding-bottom: 5px;
 
     h2 {
       display: flex;
       flex-direction: column;
-      margin-top: 50px;
       text-align: center;
       font-family: 'Nanum Gothic', sans-serif;
-      font-size: 36px;
+      font-size: 18px;
+      font-weight: bold;
       color: #222222;
     }
 
-    .loginForm {
-      height: 40px;
-    }
-
-    .loginInput {
+    .logInForm {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 100px;
-      color: #222222;
+      margin-left: 150px;
+      padding: 10px;
     }
 
-    .checkbox {
-      box-shadow: 0 0 0 3px grey;
+    input .logInInput {
+      padding: 15px 15px;
+      font-size: 50px;
     }
 
-    .button {
-      width: 100px;
-      background-color: #f9cc33;
-      color: red;
+    .logInInput {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: row;
+      margin: -5px;
+      padding: 0 100px;
+      color: #ececec;
+      border: 1px solid #ececec;
+      position: relative;
+
+      .checkBox {
+        width: 10px;
+        height: 10px;
+        margin: 10px;
+        padding-right: 0 20px;
+        outline-width: 4px solid #ececec;
+
+        .button {
+          width: 300px;
+          height: 40px;
+          border-radius: 5px;
+          margin: -30px;
+          font-size: 15px;
+          font-weight: normal;
+          background-color: #f9cc33;
+          color: 222222;
+          border: 1px solid #ececec;
+          position: absolute;
+          left: 20%;
+          top: 10%;
+        }
+      }
     }
 
-    p {
-      font-size: 15px;
-      line-height: normal;
-    }
+    // p {
+    //   margin-top: 100px;
+    //   bottom: 50px;
+    //   font-size: 15px;
+    //   line-height: normal;
+    // }
 
-    a {
-      text-decoration: none;
-      color: $black;
-    }
+    // a {
+    //   text-decoration: none;
+    //   color: $black;
+    // }
 
-    a:hover,
-    button:hover {
-      cursor: pointer;
-    }
+    // a:hover,
+    // button:hover {
+    //   cursor: pointer;
+    // }
+  }
+  a.forGotId,
+  a.forGotPw {
+    display: flex;
+    justify-content: center;
+    text-align: center;
   }
 }
