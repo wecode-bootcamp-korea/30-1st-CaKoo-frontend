@@ -1,0 +1,40 @@
+.productDetail {
+  margin-top: 85px;
+  padding: 0 160px;
+
+  .category {
+    padding: 45px 0 25px;
+    font-size: 14px;
+    color: rgb(170, 168, 168);
+
+    a {
+      color: rgb(170, 168, 168);
+    }
+  }
+
+  .wrapper {
+    display: flex;
+    margin-bottom: 40px;
+
+    .imageContainer {
+      width: 50%;
+      padding-right: 3.5%;
+
+      .mainImage {
+        margin-bottom: 18px;
+        width: 100%;
+      }
+
+      .smallImages {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+
+    .order {
+      width: 50%;
+      padding-left: 3.5%;
+    }
+  }
+}
