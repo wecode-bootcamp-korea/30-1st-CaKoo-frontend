@@ -1,0 +1,46 @@
+@import '/src/styles/variables.scss';
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 85px;
+  padding: 0 160px;
+  background-color: #fefeff;
+  border-bottom: 1px solid $yellow;
+
+  .logo {
+    width: 45px;
+  }
+
+  .navUser {
+    display: flex;
+    align-items: center;
+
+    li {
+      display: flex;
+      align-items: center;
+    }
+
+    li::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 18px;
+      margin-left: 12px;
+      background-color: #d2d2d3;
+    }
+
+    li:first-child::before {
+      content: none;
+    }
+
+    a {
+      margin-left: 12px;
+      font-size: 14px;
+    }
+  }
+}
