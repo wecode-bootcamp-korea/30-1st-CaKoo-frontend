@@ -6,7 +6,5 @@
     "source.fixAll.eslint": true
   },
   "javascript.format.enable": false,
-  "eslint.alwaysShowStatus": true,
-  "files.autoSave": "onFocusChange",
-  "liveServer.settings.port": 5501
+  "eslint.alwaysShowStatus": true
 }

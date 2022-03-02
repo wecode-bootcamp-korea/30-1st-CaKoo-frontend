@@ -1,37 +1,35 @@
+@import '/src/styles/variables.scss';
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
+
 * {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
 
-* body {
-  font-family: 'Nanum Gothic', sans-serif;
-  color: black;
-  background-color: #fefeff;
-}
+  body {
+    font-family: 'Nanum Gothic', sans-serif;
+    background-color: #fefeff;
+    color: $black;
 
-* body a {
-  text-decoration: none;
-}
+    p {
+      line-height: normal;
+    }
 
-* body button {
-  border: 0;
-}
+    a {
+      text-decoration: none;
+      color: $black;
+    }
 
-* body input:focus {
-  outline: none;
-}
+    a:hover,
+    button:hover {
+      cursor: pointer;
+    }
 
-p {
-  line-height: normal;
-}
+    button {
+      border: 0;
+    }
 
-a {
-  color: black;
-}
-
-a:hover,
-button:hover {
-  cursor: pointer;
+    input:focus {
+      outline: none;
+    }
+  }
 }
 /*# sourceMappingURL=common.css.map */
