@@ -6,31 +6,38 @@ function Login() {
     <div class="logInForm">
       <form className="logInInput">
         <input
-          className="logInInput"
+          className="id"
           type="text"
+          onChange={upDateIdValue}
           placeholder="아이디 (이메일)"
+          name="userName"
         />
         <input
-          className="logInInputPw"
+          required
+          maxlength="20"
+          className="id"
           type="text"
+          onChange={upDateIdValue}
           placeholder="비밀번호"
+          text="password"
         />
         <input className="checkBox" type="checked" />
-        <button className="button">로그인</button>
+        <button className="logInBtn">로그인</button>
       </form>
+        <p>아이디 저장</p>
     </div>
   )  
 }
 
-fetch ("https://") {
+fetch ("https://www.") {
   method: "POST";
   body: JSON.stringy ({
     email: email
     password: password
   }),
-})
+}(
   .then((response)) =>.json())
   .then((result) => console.log("결과:", result));
-);
+;
 
 export default Login;
