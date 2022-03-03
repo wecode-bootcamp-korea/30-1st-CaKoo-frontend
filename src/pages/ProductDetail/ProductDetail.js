@@ -9,7 +9,7 @@ function ProductDetail() {
     name: '딸기 쿠키 케이크',
     price: 32000,
     description: '특별한 날에 어울리는,',
-    image: '/img/sophie/strawberry_biscuit_cake.jpeg',
+    image: '/images/strawberry_biscuit_cake.jpeg',
   };
 
   return (
