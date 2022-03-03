@@ -8,7 +8,7 @@ function Product({ name, price, description }) {
         <img
           alt="상품 미리보기(샘플)"
           className="productImage"
-          src="/img/sophie/strawberry_biscuit_cake.jpeg"
+          src="/images/strawberry_biscuit_cake.jpeg"
         />
       </Link>
       <span className="productInfo">{description}</span>
