@@ -5,11 +5,7 @@ function Nav() {
   return (
     <nav className="nav">
       <Link to="/">
-        <img
-          alt="cakoo 로고"
-          className="logo"
-          src="img/sophie/cakoo_logo.png"
-        />
+        <img alt="cakoo 로고" className="logo" src="images/cakoo_logo.png" />
       </Link>
       <ul className="navUser">
         <li>
