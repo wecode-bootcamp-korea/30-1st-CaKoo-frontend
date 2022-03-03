@@ -22,6 +22,8 @@ function Main() {
       name: '딸기 쿠키 케이크',
       price: 32000,
       description: '특별한 날에 어울리는,',
+      size: ['1호', '2호'],
+      rate: 10,
     },
     {
       id: 2,
