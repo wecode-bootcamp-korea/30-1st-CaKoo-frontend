@@ -1,15 +1,11 @@
 import { Link } from 'react-router-dom';
 import './Product.scss';
 
-function Product({ name, price, description }) {
+function Product({ name, price, description, url }) {
   return (
     <article className="product">
       <Link to="/product-detail">
-        <img
-          alt="상품 미리보기(샘플)"
-          className="productImage"
-          src="/images/strawberry_biscuit_cake.jpeg"
-        />
+        <img alt="상품 미리보기(샘플)" className="productImage" src={url} />
       </Link>
       <span className="productInfo">{description}</span>
       <Link to="/product-detail" className="productName">
