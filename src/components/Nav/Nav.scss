@@ -11,6 +11,7 @@
   padding: 0 160px;
   background-color: #fefeff;
   border-bottom: 1px solid $yellow;
+  z-index: 100;
 
   .logo {
     width: 45px;
@@ -23,19 +24,19 @@
     li {
       display: flex;
       align-items: center;
-    }
 
-    li::before {
-      content: '';
-      display: block;
-      width: 1px;
-      height: 18px;
-      margin-left: 12px;
-      background-color: #d2d2d3;
-    }
+      &::before {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 18px;
+        margin-left: 12px;
+        background-color: #d2d2d3;
+      }
 
-    li:first-child::before {
-      content: none;
+      &:first-child::before {
+        content: none;
+      }
     }
 
     a {
