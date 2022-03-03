@@ -130,6 +130,13 @@
       padding: 30px 20px;
       border-radius: 5px;
       font-weight: lighter;
+      font-size: 14px;
+
+      .agree {
+        display: flex;
+        margin-top: 17px;
+        font-size: 13px;
+      }
     }
 
     b {

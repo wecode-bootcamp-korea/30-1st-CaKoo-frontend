@@ -163,47 +163,51 @@ function SignUp() {
               <ul className="agreeList">
                 <li className="list">
                   <label className="conditionTrue">
-                    <span>모두 동의합니다.</span>
-                    <input type="checkbox" />
-                    <span className="boxIcon" />
+                    <span>
+                      <input type="checkbox" />
+                      <span className="boxIcon" />
+                      모두 동의합니다.
+                    </span>
                     <hr />
                   </label>
                 </li>
                 <li className="list">
                   <label className="conditionTrue">
-                    <span>
+                    <span className="agree">
+                      <input type="checkbox" />
+                      <span className="boxIcon" />
                       이용약관 동의
                       <b>(필수)</b>
                     </span>
-                    <input type="checkbox" />
-                    <span className="boxIcon" />
                   </label>
                 </li>
                 <li className="list">
                   <label className="conditionTrue">
-                    <span>
+                    <span className="agree">
+                      <input type="checkbox" />
+                      <span className="boxIcon" />
                       개인정보 수집, 이용동의
                       <b>(필수)</b>
                     </span>
-                    <input type="checkbox" />
-                    <span className="boxIcon" />
                   </label>
                 </li>
                 <li className="list">
                   <label className="conditionTrue">
-                    <span>
+                    <span className="agree">
+                      <input type="checkbox" />
+                      <span className="boxIcon" />
                       개인정보 이용 동의
                       <b>(필수)</b>
                     </span>
-                    <input type="checkbox" />
-                    <span className="boxIcon" />
                   </label>
                 </li>
                 <li className="list">
                   <label className="conditionTrue">
-                    <span>이벤트, 혜택정보 수신 동의 (선택)</span>
-                    <input type="checkbox" />
-                    <span className="boxIcon" />
+                    <span className="agree">
+                      <input type="checkbox" />
+                      <span className="boxIcon" />
+                      이벤트, 혜택정보 수신 동의 (선택)
+                    </span>
                   </label>
                 </li>
               </ul>
