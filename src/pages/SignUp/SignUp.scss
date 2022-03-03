@@ -41,7 +41,7 @@
       border-radius: 5px;
       width: 360px;
       height: 50px;
-      padding: 0px 20px;
+      padding: 0px 15px;
       font-size: 16px;
     }
 
@@ -49,21 +49,21 @@
       color: gray;
     }
 
-    #password {
+    .password {
       margin-right: 140px;
     }
 
-    #passwordCheck {
+    .passwordCheck {
       margin-right: 140px;
     }
 
-    #name {
+    .name {
       margin-right: 140px;
     }
 
-    #phone {
-      #phone2,
-      #phone3 {
+    .phone {
+      .phone2,
+      .phone3 {
         width: 110px;
       }
 
@@ -72,7 +72,7 @@
       }
     }
 
-    #phoneCertify {
+    .phoneCertify {
       margin-left: 120px;
     }
 
@@ -104,24 +104,66 @@
       border-color: #f9cc33;
     }
 
-    #phone input {
+    .phone input {
       width: 120px;
     }
 
-    #birthYear {
+    .birthYear {
       width: 180px;
     }
 
-    #birthMonth {
+    .birthMonth {
       width: 80px;
     }
 
-    #birthDay {
+    .birthDay {
       width: 80px;
     }
   }
 
   .termConditionBox {
     margin-top: 25px;
+
+    .termConditionAgreeBox {
+      border: 1px solid $gray;
+      margin-top: 20px;
+      padding: 30px 20px;
+      border-radius: 5px;
+      font-weight: lighter;
+    }
+
+    b {
+      color: red;
+    }
+
+    .agreeTerms {
+      margin: 25px 0;
+      display: flex;
+      justify-content: center;
+      color: gray;
+
+      button {
+        background-color: white;
+        color: gray;
+      }
+    }
+  }
+
+  .signUpBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      height: 48px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    button:disabled {
+      background-color: #ececec;
+    }
   }
 }
