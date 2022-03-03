@@ -1,4 +1,4 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.scss';
 
@@ -27,16 +27,15 @@ import './Login.scss';
 //     setColor('#f9cc33;');
 //   };
 // }
-//   fetch ("https://www.") {
+//   fetch ("https://www."); {
 //   method: "POST";
 //   body: JSON.stringy ({
-//     email: email
+//     email: email,
 //     password: password
 //   }),
-// }(
-//   .then((response)) =>.json())
+// };
+//   .then((response)) => .json())
 //   .then((result) => console.log("결과:", result));
-// ;
 
 function Login() {
   return (
