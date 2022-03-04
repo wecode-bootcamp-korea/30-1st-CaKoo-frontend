@@ -15,13 +15,13 @@
     font-weight: bold;
   }
 
-  .logInFormBox {
+  .loginFormBox {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    .logInForm {
+    .loginForm {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -33,7 +33,7 @@
       color: #ececec;
       border-color: #ececec;
 
-      .logInInput {
+      .loginInput {
         display: flex;
         flex-direction: center;
         justify-content: center;
@@ -47,6 +47,7 @@
         color: #ececec;
         border-color: #ececec;
       }
+
       .idSave {
         width: 100%;
 
@@ -66,12 +67,16 @@
         }
       }
 
-      .logInBtn {
+      .loginBtn {
         width: 350px;
         height: 55px;
         line-height: 50px;
         border-radius: 5px;
         font-size: 15px;
+        background-color: #ececec;
+      }
+
+      .yellow {
         background-color: #f9cc33;
       }
     }

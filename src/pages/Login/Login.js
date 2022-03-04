@@ -32,14 +32,15 @@ function Login() {
     fetch('http://10.58.6.174:8000/users/signin', {
       method: 'POST',
       body: JSON.stringify({
-        email: 'test12@test.com',
-        password: 'test123!',
+        email: idValue,
+        password: pwValue,
       }),
     })
       .then(response => response.json())
       .then(result => {
-        if (result.token) {
-          navigate('/main');
+        if (result.access_token) {
+          localStorage.setItem('token', result.access_token);
+          navigate('/');
         } else {
           alert('가입된 회원이 아닙니다. 회원가입을 먼저 해주세요.');
         }
@@ -49,10 +50,10 @@ function Login() {
   return (
     <div className="login">
       <h1>로그인</h1>
-      <div className="logInFormBox">
-        <form className="logInForm">
+      <div className="loginFormBox">
+        <form className="loginForm">
           <input
-            className="logInInput"
+            className="loginInput"
             type="text"
             onChange={handleIdInput}
             placeholder="아이디 (이메일)"
@@ -60,7 +61,7 @@ function Login() {
           />
           <input
             required
-            className="logInInput"
+            className="loginInput"
             type="text"
             onChange={handlePwInput}
             placeholder="비밀번호"
@@ -73,14 +74,9 @@ function Login() {
           </div>
           <button
             type="button"
-            className="logInBtn"
+            className={isValid() ? 'loginBtn yellow' : 'loginBtn'}
             onClick={handleFetch}
             disabled={!isValid()}
-            style={
-              isValid()
-                ? { backgroundColor: '#f9cc33' }
-                : { backgroundColor: '#ececec' }
-            }
           >
             로그인
           </button>
