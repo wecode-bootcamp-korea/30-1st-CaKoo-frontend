@@ -1,0 +1,131 @@
+@import '/src/styles/variables.scss';
+
+.order {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 120px;
+  font-weight: bold;
+  font-size: 20px;
+
+  h1 {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+  }
+
+  .orderCheck {
+    width: 600px;
+    margin-top: 50px;
+    padding-left: 10px;
+  }
+}
+
+.userNameInfo {
+  width: 600px;
+  margin-top: 50px;
+  // padding-left: 10px;
+
+  .userNameInfoBox {
+    display: flex;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  span {
+    padding-left: 12px;
+    font-size: 14px;
+    color: lightgrey;
+  }
+
+  .user {
+    display: flex;
+    flex-direction: column;
+
+    .userBox {
+      width: 100%;
+
+      span {
+        font-size: 18px;
+        color: #222222;
+      }
+
+      .userInputBox,
+      .phoneInputBox {
+        width: 350px;
+        height: 55px;
+        margin-top: 30px;
+        line-height: 50px;
+        border-radius: 5px;
+        font-size: 15px;
+        text-align: center;
+        background-color: lightgrey;
+        border: none;
+      }
+    }
+  }
+  .form {
+    .userForm {
+      padding-top: 30px;
+    }
+
+    //   h2 {
+    //   }
+
+    //   input {
+    //   }
+    // }
+
+    // .orderInput {
+    // }
+  }
+}
+
+.orderDetail {
+  width: 600px;
+  padding-top: 20px;
+}
+
+.orderPayment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+
+  h3 {
+    font-size: 30px;
+  }
+}
+
+.orderMailingData {
+  margin-bottom: 30px;
+}
+
+.orderPaymentContainer {
+  margin-top: 120px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.payment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+button {
+  width: 350px;
+  height: 55px;
+  margin-top: 20px;
+  line-height: 50px;
+  border-radius: 5px;
+  font-size: 15px;
+  text-align: center;
+  background-color: #f9cc33;
+}
