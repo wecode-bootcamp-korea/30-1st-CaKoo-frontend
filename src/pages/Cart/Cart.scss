@@ -1,0 +1,74 @@
+@import '/src/styles/variables.scss';
+
+main {
+  margin-top: 130px;
+  height: 100vh;
+
+  .cartHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .cartTitle {
+      font-size: 25px;
+      font-weight: bold;
+    }
+  }
+
+  fieldset {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .cartInfoBox {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 900px;
+      height: 50px;
+      border: 1px solid none;
+      background-color: #f7f7f7;
+      font-size: 12px;
+      border-radius: 5px;
+
+      .productInfo {
+        width: 50%;
+        text-align: center;
+      }
+
+      .addProduct {
+        width: 35%;
+        text-align: center;
+      }
+
+      .totalPrice {
+        width: 15%;
+        text-align: center;
+      }
+    }
+
+    .cartInfo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      .emptyCart {
+        padding: 75px 0;
+        text-align: center;
+        line-height: 2;
+        font-size: 14px;
+        color: gray;
+      }
+
+      .goShopping {
+        width: 300px;
+        height: 40px;
+        border-radius: 5px;
+        background-color: $yellow;
+      }
+    }
+  }
+}
