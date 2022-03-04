@@ -37,17 +37,23 @@ function Main() {
   //   },
   // ];
 
+  if (!productList.length) {
+    return null;
+  }
   return (
     <main className="main">
       <Banner />
       <div className="productContainer">
+        <h1>{productList[0].name}</h1>
         {productList.map(data => (
           <Product
             key={data.id}
+            id={data.id}
             name={data.name}
             price={data.price}
             rate={data.discount_rate}
             description={data.description}
+            sizes={data.sizes}
             url={data.thumbnail}
           />
         ))}
