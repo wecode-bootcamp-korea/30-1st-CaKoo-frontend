@@ -4,16 +4,21 @@ import SmallImage from './SmallImage/SmallImage';
 
 import './ProductDetail.scss';
 
-function ProductDetail() {
+function ProductDetail({ match }) {
   const [product, setProduct] = useState({});
 
+  // const { id } = match.params;
+  // console.log(id);
+
+  const id = 23;
+
   useEffect(() => {
-    fetch('http://10.58.3.222:8000/product?name=', {
+    fetch(`http://10.58.3.222:8000/products/product/${id}`, {
       method: 'GET',
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result);
+        // console.log(result);
         setProduct(result);
       });
   }, []);
