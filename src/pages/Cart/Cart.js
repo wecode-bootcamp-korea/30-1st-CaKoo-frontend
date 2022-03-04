@@ -1,4 +1,6 @@
 import './Cart.scss';
+import Product from './Product';
+import BuyConfirm from './BuyConfirm';
 
 function Cart() {
   return (
@@ -8,11 +10,12 @@ function Cart() {
       </header>
       <fieldset>
         <div className="cartInfoBox">
-          <span className="productInfo">상품 정보</span>
-          <span className="addProduct">추가 상품</span>
-          <span className="totalPrice">합계 금액</span>
+          <span className="productInfoTitle">상품 정보</span>
+          <span className="addProductTitle">추가 상품</span>
+          <span className="totalPriceTitle">합계 금액</span>
         </div>
         <div className="cartInfo">
+          <Product />
           <span className="emptyCart">
             장바구니가 비어있습니다.
             <br />
@@ -21,6 +24,7 @@ function Cart() {
           <button type="button" className="goShopping">
             쇼핑하러 가기
           </button>
+          <BuyConfirm />
         </div>
       </fieldset>
     </main>

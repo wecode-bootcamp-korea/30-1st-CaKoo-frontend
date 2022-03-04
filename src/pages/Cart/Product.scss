@@ -1,0 +1,91 @@
+@import '/src/styles/variables.scss';
+
+.product {
+  .productInfoBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 900px;
+    height: 175px;
+    border: 1px solid $gray;
+  }
+
+  .productInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    border-right: 1px solid $gray;
+
+    span {
+      margin-bottom: 10px;
+    }
+
+    .productName {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .arriveDate {
+      font-size: 12px;
+    }
+
+    .productPrice {
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .productCount {
+      button {
+        font-size: 15px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50px;
+      }
+
+      .productQuantity {
+        font-size: 12px;
+        padding: 0 10px;
+      }
+    }
+  }
+
+  .addProduct {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    width: 35%;
+    height: 100%;
+    border-right: 1px solid $gray;
+    padding-left: 20px;
+  }
+
+  .totalPrice {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    text-align: center;
+
+    .totalPriceInfo {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .deliveryInfo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 7px;
+      border: 1px solid $gray;
+      height: 15px;
+      width: 40px;
+      border-radius: 10px;
+      margin-top: 8px;
+      background-color: $gray;
+    }
+  }
+}

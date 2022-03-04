@@ -1,0 +1,49 @@
+@import '/src/styles/variables.scss';
+
+.buyConfirm {
+  .buyConfirmBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 900px;
+    height: 120px;
+    background-color: #f7f7f7;
+
+    .buyConfirmBoxDetail {
+      margin-left: 50px;
+      font-size: 13px;
+
+      .buyConfirmTitle {
+        margin-bottom: 10px;
+      }
+
+      .buyConfirmDetail {
+        color: gray;
+        font-size: 12px;
+      }
+    }
+  }
+  .priceDetailBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background-color: #fff9ee;
+    border-top: 2px solid $yellow;
+
+    .priceDetail {
+      b {
+        font-weight: bold;
+      }
+
+      span {
+        margin: 10px 0;
+      }
+    }
+
+    .totalAmount {
+      font-weight: bold;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 @import '/src/styles/variables.scss';
 
-main {
+.cart {
   margin-top: 130px;
   height: 100vh;
 
@@ -33,17 +33,17 @@ main {
       font-size: 12px;
       border-radius: 5px;
 
-      .productInfo {
+      .productInfoTitle {
         width: 50%;
         text-align: center;
       }
 
-      .addProduct {
+      .addProductTitle {
         width: 35%;
         text-align: center;
       }
 
-      .totalPrice {
+      .totalPriceTitle {
         width: 15%;
         text-align: center;
       }
