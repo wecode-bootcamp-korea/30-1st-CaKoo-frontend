@@ -1,3 +1,5 @@
+@import '/src/styles/variables.scss';
+
 .productDetail {
   margin-top: 85px;
   padding: 0 160px;
@@ -38,6 +40,100 @@
     .order {
       // width: 50%;
       // padding-left: 3.5%;
+
+      .description {
+        margin-top: 5px;
+        color: gray;
+      }
+
+      .productName {
+        margin: 18px 0;
+        font-size: 25px;
+        font-weight: 700;
+      }
+
+      .priceInfo {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .discountRate {
+          color: #ff4e50;
+          font-weight: 700;
+        }
+
+        .listPrice {
+          margin-left: 5px;
+          color: gray;
+        }
+
+        .realPrice {
+          margin-left: 10px;
+          font-size: 25px;
+          font-weight: 700;
+        }
+      }
+
+      hr {
+        border: 0;
+        height: 1px;
+        background: $gray;
+      }
+
+      .deliveryInfo {
+        margin: 20px 0;
+
+        .mint {
+          color: #46cfa7;
+        }
+      }
+
+      .label {
+        margin-top: 4px;
+        font-weight: 700;
+      }
+
+      .size {
+        display: grid;
+        grid-template-columns: 30% 70%;
+        margin: 20px 0;
+
+        .sizeSelector {
+          // display: flex;
+          // flex-direction: column;
+
+          button {
+            width: 100%;
+          }
+
+          .hide {
+            display: none;
+          }
+
+          .show {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+          }
+        }
+      }
+
+      .quantity {
+        display: grid;
+        grid-template-columns: 30% 70%;
+        margin: 20px 0;
+
+        .sizeBtn {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+        }
+
+        .count {
+          display: inline-block;
+          margin: 0 10px;
+        }
+      }
     }
   }
 }
