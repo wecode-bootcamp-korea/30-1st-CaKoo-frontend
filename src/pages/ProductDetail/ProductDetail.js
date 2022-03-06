@@ -7,6 +7,7 @@ import { useState } from 'react';
 function ProductDetail({ match }) {
   const [count, setCount] = useState(1);
   const [toggle, setToggle] = useState(false);
+  const [selectedSize, setSelectedSize] = useState('사이즈를 선택해주세요.');
 
   function countDown() {
     if (count > 1) {
@@ -21,6 +22,11 @@ function ProductDetail({ match }) {
   }
 
   function handleSize() {
+    setToggle(!toggle);
+  }
+
+  function changeSize(event) {
+    setSelectedSize(event.target.innerText);
     setToggle(!toggle);
   }
 
@@ -95,9 +101,9 @@ function ProductDetail({ match }) {
 
   const rate = 1 - discount_rate;
 
-  if (!product) {
-    return null;
-  }
+  // if (!product) {
+  //   return null;
+  // }
 
   return (
     <main className="productDetail">
@@ -139,14 +145,21 @@ function ProductDetail({ match }) {
             <div className="size">
               <span className="label">사이즈</span>
               <div className="sizeSelector">
-                <button onClick={handleSize} type="button">
-                  사이즈를 선택해주세요.
+                <button
+                  className="sizeOption"
+                  onClick={handleSize}
+                  type="button"
+                >
+                  {selectedSize}
                 </button>
                 <div className={toggle ? 'show' : 'hide'}>
                   {size_price.map(size => (
-                    <button key={size.size} type="button">{`${
-                      size.size
-                    } : ${Math.round(size.price)}`}</button>
+                    <button
+                      key={size.size}
+                      type="button"
+                      className="sizeOption eachSize"
+                      onClick={changeSize}
+                    >{`${size.size} : ${Math.round(size.price)}`}</button>
                   ))}
                 </div>
               </div>
@@ -163,7 +176,7 @@ function ProductDetail({ match }) {
                 </button>
               </div>
             </div>
-            <button>장바구니</button>
+            <button className="cartBtn">장바구니</button>
           </form>
         </div>
       </div>
