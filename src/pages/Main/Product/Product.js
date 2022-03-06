@@ -2,8 +2,16 @@ import { Link } from 'react-router-dom';
 import './Product.scss';
 
 function Product({ data }) {
-  const { id, name, price, discount_rate, description, sizes, thumbnail } =
-    data;
+  const {
+    id,
+    name,
+    price,
+    discount_rate,
+    discount_price,
+    description,
+    sizes,
+    thumbnail,
+  } = data;
   return (
     <article className="product">
       <Link to={`/product-detail/${id}`}>
@@ -18,11 +26,11 @@ function Product({ data }) {
         {name}
       </Link>
       <p className="priceInfo">
-        <span className="discountRate">{`${parseInt(
+        <span className="discountRate">{`${Math.round(
           (1 - discount_rate) * 100
         )}%`}</span>
         <span className="productPrice">{`${parseInt(price)}원`}</span>
-        <span className="discountedPrice">{`${price * discount_rate}원`}</span>
+        <span className="discountedPrice">{`${discount_price}원`}</span>
       </p>
       <p className="otherInfo">
         {/* {sizes.map((size, index) => (
@@ -30,8 +38,9 @@ function Product({ data }) {
             {size}
           </span>
         ))} */}
-        <span className="productSize">1호</span>
-        <span className="productSize">2호</span>
+        <span className="productSize">{sizes}</span>
+        {/* <span className="productSize">1호</span>
+        <span className="productSize">2호</span> */}
         <span className="delivery">무료배송</span>
       </p>
     </article>

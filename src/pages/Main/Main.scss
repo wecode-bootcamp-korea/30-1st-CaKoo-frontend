@@ -6,6 +6,19 @@
   align-items: center;
   margin-top: 85px;
 
+  .filterBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    width: 60%;
+
+    .filterForm {
+      display: flex;
+      align-items: center;
+    }
+  }
+
   .productContainer {
     display: flex;
     flex-wrap: wrap;

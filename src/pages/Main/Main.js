@@ -5,15 +5,37 @@ import './Main.scss';
 
 function Main() {
   const [productList, setProductList] = useState([]);
+  const [sort, setSort] = useState('');
+  const [filterSize, setFilterSize] = useState([]);
+
+  const URI = 'http://10.58.0.120:8000/products';
 
   useEffect(() => {
-    fetch('http://10.58.5.164:8000/products')
+    fetch(URI)
       .then(res => res.json())
       .then(result => {
         // console.log(result.lists);
         setProductList(result.lists);
       });
   }, []);
+
+  useEffect(() => {
+    fetch(`${URI}?ordering=${sort}&size=${filterSize.join()}`)
+      .then(res => res.json())
+      .then(result => {
+        // console.log(result.lists);
+        setProductList(result.lists);
+      });
+  }, [sort, filterSize]);
+
+  function handleCheck(event) {
+    const size = event.target.name;
+    if (filterSize.includes(size)) {
+      setFilterSize(filterSize.filter(element => element !== size));
+    } else {
+      setFilterSize([...filterSize, size]);
+    }
+  }
 
   // const productList = [
   //   {
@@ -39,6 +61,54 @@ function Main() {
   return (
     <main className="main">
       <Banner />
+      <div className="filterBar">
+        {/* form에 method 사용?? */}
+        <form className="filterForm">
+          <label>
+            <input type="checkbox" name="1" onChange={handleCheck} />
+            mini
+          </label>
+          <label>
+            <input type="checkbox" name="2" onChange={handleCheck} />
+            1호
+          </label>
+          <label>
+            <input type="checkbox" name="3" onChange={handleCheck} />
+            2호
+          </label>
+          <label>
+            <input type="checkbox" name="4" onChange={handleCheck} />
+            3호
+          </label>
+        </form>
+        <div>
+          <button
+            type="button"
+            onClick={() => {
+              setSort('max_price');
+            }}
+          >
+            가격 높은순
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setSort('min_price');
+            }}
+          >
+            가격 낮은순
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setSort('recent');
+            }}
+          >
+            신상품
+          </button>
+        </div>
+      </div>
+
       <div className="productContainer">
         {productList.map(data => (
           <Product key={data.id} data={data} />
