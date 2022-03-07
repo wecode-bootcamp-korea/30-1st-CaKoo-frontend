@@ -6,36 +6,45 @@ import './Main.scss';
 function Main() {
   const [productList, setProductList] = useState([]);
   const [sort, setSort] = useState('');
-  const [filterSize, setFilterSize] = useState([]);
+  // const [filterSize, setFilterSize] = useState([]);
 
-  const URI = 'http://10.58.0.120:8000/products';
+  const URI = 'http://10.58.1.160:8000/products';
 
   useEffect(() => {
-    fetch(URI)
+    fetch(sort ? `${URI}?sort=${sort}` : URI)
       .then(res => res.json())
       .then(result => {
         // console.log(result.lists);
         setProductList(result.lists);
       });
-  }, []);
+  }, [sort]);
 
-  useEffect(() => {
-    fetch(`${URI}?ordering=${sort}&size=${filterSize.join()}`)
-      .then(res => res.json())
-      .then(result => {
-        // console.log(result.lists);
-        setProductList(result.lists);
-      });
-  }, [sort, filterSize]);
+  // size filter 있을 때
+  // useEffect(() => {
+  //   fetch(
+  //     sort
+  //       ? filterSize.length
+  //         ? `${URI}?sort=${sort}&size=${filterSize.join()}`
+  //         : `${URI}?sort=${sort}`
+  //       : filterSize.length
+  //       ? `${URI}?size=${filterSize.join()}`
+  //       : URI
+  //   )
+  //     .then(res => res.json())
+  //     .then(result => {
+  //       console.log(result.lists);
+  //       setProductList(result.lists);
+  //     });
+  // }, [sort, filterSize]);
 
-  function handleCheck(event) {
-    const size = event.target.name;
-    if (filterSize.includes(size)) {
-      setFilterSize(filterSize.filter(element => element !== size));
-    } else {
-      setFilterSize([...filterSize, size]);
-    }
-  }
+  // function handleCheck(event) {
+  //   const size = event.target.name;
+  //   if (filterSize.includes(size)) {
+  //     setFilterSize(filterSize.filter(element => element !== size));
+  //   } else {
+  //     setFilterSize([...filterSize, size]);
+  //   }
+  // }
 
   // const productList = [
   //   {
@@ -62,7 +71,7 @@ function Main() {
     <main className="main">
       <Banner />
       <div className="filterBar">
-        {/* form에 method 사용?? */}
+        {/* form에 method 사용?? filter 사용 안 하는 중.
         <form className="filterForm">
           <label>
             <input type="checkbox" name="1" onChange={handleCheck} />
@@ -80,12 +89,12 @@ function Main() {
             <input type="checkbox" name="4" onChange={handleCheck} />
             3호
           </label>
-        </form>
+        </form> */}
         <div>
           <button
             type="button"
             onClick={() => {
-              setSort('max_price');
+              setSort('expensive');
             }}
           >
             가격 높은순
@@ -93,7 +102,7 @@ function Main() {
           <button
             type="button"
             onClick={() => {
-              setSort('min_price');
+              setSort('cheap');
             }}
           >
             가격 낮은순
@@ -105,6 +114,14 @@ function Main() {
             }}
           >
             신상품
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setSort('old');
+            }}
+          >
+            오래된 순
           </button>
         </div>
       </div>
