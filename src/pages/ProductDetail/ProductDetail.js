@@ -1,24 +1,32 @@
 // import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import SmallImage from './SmallImage/SmallImage';
-import './ProductDetail.scss';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import ProductAdd from './ProductAdd/ProductAdd';
+import './ProductDetail.scss';
 
 function ProductDetail({ match }) {
   const [count, setCount] = useState(1);
   const [toggle, setToggle] = useState(false);
-  const [selectedSize, setSelectedSize] = useState('사이즈를 선택해주세요.');
+  const [addedProduct, setAddedProduct] = useState([]);
 
   function countDown() {
-    if (count > 1) {
-      setCount(count - 1);
-    }
+    setCount(prevCount => {
+      if (prevCount > 1) {
+        return prevCount - 1;
+      } else {
+        return prevCount;
+      }
+    });
   }
 
   function countUp() {
-    if (count < 10) {
-      setCount(count + 1);
-    }
+    setCount(prevCount => {
+      if (prevCount < 10) {
+        return prevCount + 1;
+      } else {
+        return prevCount;
+      }
+    });
   }
 
   function handleSize() {
@@ -26,9 +34,35 @@ function ProductDetail({ match }) {
   }
 
   function changeSize(event) {
-    setSelectedSize(event.target.innerText);
+    const sizeAndPrice = event.target.innerText.split(' : ');
+    const size = sizeAndPrice[0];
+    const price = sizeAndPrice[1];
+
+    if (addedProduct.map(product => product.size === size).includes(true)) {
+      alert('이미 담은 상품입니다!');
+    } else {
+      setAddedProduct([
+        ...addedProduct,
+        { size: size, price: price, quantity: count },
+      ]);
+    }
+
     setToggle(!toggle);
+    setCount(1);
   }
+
+  function deleteProduct() {
+    setAddedProduct();
+  }
+
+  const totalPrice = () => {
+    let price = 0;
+    for (let i = 0; i < addedProduct.length; i++) {
+      const product = addedProduct[i];
+      price = price + product.price * product.quantity;
+    }
+    return price;
+  };
 
   // const [product, setProduct] = useState({});
 
@@ -121,7 +155,12 @@ function ProductDetail({ match }) {
           />
           <div className="smallImages">
             {product_images.map((image, index) => (
-              <SmallImage key={index} img={image} />
+              <img
+                key={index}
+                alt="상품 작게 보기"
+                className="smallImage"
+                src={image}
+              />
             ))}
           </div>
         </div>
@@ -141,29 +180,8 @@ function ProductDetail({ match }) {
             3만원 이상 구매 시, <span className="mint">무료배송!</span>
           </p>
           <hr />
+
           <form>
-            <div className="size">
-              <span className="label">사이즈</span>
-              <div className="sizeSelector">
-                <button
-                  className="sizeOption"
-                  onClick={handleSize}
-                  type="button"
-                >
-                  {selectedSize}
-                </button>
-                <div className={toggle ? 'show' : 'hide'}>
-                  {size_price.map(size => (
-                    <button
-                      key={size.size}
-                      type="button"
-                      className="sizeOption eachSize"
-                      onClick={changeSize}
-                    >{`${size.size} : ${Math.round(size.price)}`}</button>
-                  ))}
-                </div>
-              </div>
-            </div>
             <div className="quantity">
               <span className="label">수량</span>
               <div className="counter">
@@ -174,6 +192,48 @@ function ProductDetail({ match }) {
                 <button onClick={countUp} className="sizeBtn" type="button">
                   +
                 </button>
+              </div>
+            </div>
+
+            <div className="size">
+              <span className="label">사이즈</span>
+              <div className="sizeSelector">
+                <button
+                  className="sizeOption"
+                  onClick={handleSize}
+                  type="button"
+                >
+                  사이즈를 선택해주세요.
+                </button>
+                <div className={toggle ? 'show' : 'hide'}>
+                  {size_price.map(size => (
+                    <button
+                      key={size.size}
+                      type="button"
+                      className="sizeOption eachSize"
+                      onClick={changeSize}
+                    >{`${size.size} : ${Math.round(
+                      size.price * discount_rate
+                    )}`}</button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div>
+              {addedProduct.map((product, index) => (
+                <ProductAdd
+                  key={index}
+                  name={name}
+                  data={product}
+                  deleteProduct
+                />
+              ))}
+              <div className="priceContainer">
+                <span>총 주문금액</span>
+                <span className="total">{`${totalPrice().toLocaleString(
+                  'ko-KR'
+                )}원`}</span>
               </div>
             </div>
             <button className="cartBtn">장바구니</button>
