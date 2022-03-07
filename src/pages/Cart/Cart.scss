@@ -1,8 +1,7 @@
 @import '/src/styles/variables.scss';
 
 .cart {
-  margin-top: 130px;
-  height: 100vh;
+  margin: 130px 0 160px;
 
   .cartHeader {
     display: flex;
@@ -10,12 +9,12 @@
     align-items: center;
 
     .cartTitle {
-      font-size: 25px;
+      font-size: 30px;
       font-weight: bold;
     }
   }
 
-  fieldset {
+  .cartContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,28 +22,21 @@
 
     .cartInfoBox {
       margin-top: 40px;
-      display: flex;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: 70% 30%;
       align-items: center;
-      width: 900px;
+      width: 1000px;
       height: 50px;
       border: 1px solid none;
       background-color: #f7f7f7;
-      font-size: 12px;
-      border-radius: 5px;
+      font-size: 16px;
+      border-top: 1px solid lightgray;
 
       .productInfoTitle {
-        width: 50%;
-        text-align: center;
-      }
-
-      .addProductTitle {
-        width: 35%;
         text-align: center;
       }
 
       .totalPriceTitle {
-        width: 15%;
         text-align: center;
       }
     }
@@ -58,16 +50,12 @@
       .emptyCart {
         padding: 75px 0;
         text-align: center;
-        line-height: 2;
-        font-size: 14px;
+        font-size: 17px;
         color: gray;
-      }
 
-      .goShopping {
-        width: 300px;
-        height: 40px;
-        border-radius: 5px;
-        background-color: $yellow;
+        .emptyCartMsg {
+          line-height: 2;
+        }
       }
     }
   }

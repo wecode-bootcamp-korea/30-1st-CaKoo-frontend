@@ -2,21 +2,35 @@
 
 .product {
   .productInfoBox {
-    display: flex;
+    display: grid;
+    grid-template-columns: 70% 30%;
     justify-content: center;
     align-items: center;
-    width: 900px;
+    width: 1000px;
     height: 175px;
-    border: 1px solid $gray;
+    // border: 1px solid $gray;
   }
 
   .productInfo {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 50%;
+    justify-content: flex-start;
+    align-items: center;
     height: 100%;
     border-right: 1px solid $gray;
+
+    .productImg {
+      width: 125px;
+      height: 125px;
+      margin-left: 40px;
+      border-radius: 1px;
+    }
+
+    .productDetail {
+      display: flex;
+      flex-direction: column;
+      margin-left: 20px;
+      padding-bottom: 30px;
+    }
 
     span {
       margin-bottom: 10px;
@@ -27,8 +41,9 @@
       font-weight: bold;
     }
 
-    .arriveDate {
+    .productSize {
       font-size: 12px;
+      padding-bottom: 5px;
     }
 
     .productPrice {
@@ -42,6 +57,9 @@
         width: 20px;
         height: 20px;
         border-radius: 50px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
 
       .productQuantity {
@@ -51,23 +69,11 @@
     }
   }
 
-  .addProduct {
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    font-weight: bold;
-    width: 35%;
-    height: 100%;
-    border-right: 1px solid $gray;
-    padding-left: 20px;
-  }
-
   .totalPrice {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 15%;
     text-align: center;
 
     .totalPriceInfo {

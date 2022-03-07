@@ -6,7 +6,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 900px;
+    width: 1000px;
     height: 120px;
     background-color: #f7f7f7;
 
@@ -31,6 +31,7 @@
     height: 100px;
     background-color: #fff9ee;
     border-top: 2px solid $yellow;
+    margin: 40px 0;
 
     .priceDetail {
       b {

@@ -1,6 +1,6 @@
 import './BuyConfirm.scss';
 
-function BuyConfirm() {
+function BuyConfirm({ totalPrice }) {
   return (
     <div className="buyConfirm">
       <div className="buyConfirmBox">
@@ -14,13 +14,13 @@ function BuyConfirm() {
       <div className="priceDetailBox">
         <div className="priceDetail">
           <span className="orderTotal">
-            총 주문금액 <b>0원</b>
+            총 주문금액 <b>{totalPrice}원&nbsp;</b>
           </span>
-          +
+          +&nbsp;
           <span className="deliverPrice">
-            배송비 <b>0원</b>
+            배송비 <b>0원&nbsp;</b>
           </span>
-          =<span className="totalAmount">총 결제금액 0원</span>
+          =<span className="totalAmount">&nbsp;총 결제금액 {totalPrice}원</span>
         </div>
       </div>
     </div>

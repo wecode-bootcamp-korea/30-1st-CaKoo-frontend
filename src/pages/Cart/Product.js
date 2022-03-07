@@ -1,27 +1,35 @@
 import './Product.scss';
 
-function Product() {
+function Product({ data }) {
+  const { product_price, product_name, product_size, cart_quantity } = data;
+
   return (
     <div className="product">
       <div className="productList">
         <div className="productInfoBox">
-          <input type="checkbox" />
-          <img src="#" alt="" />
           <div className="productInfo">
-            <span className="productName">오레오 케익</span>
-            <span className="arriveDate">수령일 : 2022-03-08</span>
-            <span className="productPrice">37,900원</span>
-            <div className="productCount">
-              <button className="decrease">-</button>
-              <span className="productQuantity">1</span>
-              <button className="increase">+</button>
+            <img
+              className="productImg"
+              src="/images/strawberry_biscuit_cake.jpeg"
+              alt=""
+            />
+            <div className="productDetail">
+              <span className="productName">{product_name}</span>
+              <span className="productSize">사이즈 : {product_size}</span>
+              <span className="productPrice">
+                {product_price.toLocaleString('ko-KR')}원
+              </span>
+              <div className="productCount">
+                <button className="decrease">-</button>
+                <span className="productQuantity">{cart_quantity}</span>
+                <button className="increase">+</button>
+              </div>
             </div>
           </div>
-          <div className="addProduct">
-            <span className="addProductInfo">편지 2,500원</span>
-          </div>
           <div className="totalPrice">
-            <span className="totalPriceInfo">40,400원</span>
+            <span className="totalPriceInfo">
+              {(product_price * cart_quantity).toLocaleString('ko-KR')}원
+            </span>
             <div className="deliveryInfo">무료배송</div>
           </div>
         </div>
