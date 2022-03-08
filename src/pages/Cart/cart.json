@@ -1,0 +1,26 @@
+[
+  {
+    "cart_id": 1,
+    "product_name": "딸기 비스킷 케이크",
+    "product_size": "mini",
+    "product_price": 49800,
+    "cart_quantity": 3,
+    "thumbnail": "/images/strawberry_biscuit_cake.jpeg"
+  },
+  {
+    "cart_id": 2,
+    "product_name": "초코 비스킷 케이크",
+    "product_size": "mini",
+    "product_price": 49800,
+    "cart_quantity": 3,
+    "thumbnail": "/images/strawberry_biscuit_cake.jpeg"
+  },
+  {
+    "cart_id": 3,
+    "product_name": "바닐라 비스킷 케이크",
+    "product_size": "mini",
+    "product_price": 49800,
+    "cart_quantity": 3,
+    "thumbnail": "/images/strawberry_biscuit_cake.jpeg"
+  }
+]

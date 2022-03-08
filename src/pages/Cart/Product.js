@@ -1,7 +1,8 @@
 import './Product.scss';
 
-function Product({ data }) {
-  const { product_price, product_name, product_size, cart_quantity } = data;
+function Product({ data, deleteCart }) {
+  const { product_price, product_name, product_size, cart_quantity, cart_id } =
+    data;
 
   return (
     <div className="product">
@@ -25,7 +26,13 @@ function Product({ data }) {
                 <button className="increase">+</button>
               </div>
             </div>
-            <button className="deleteBtn">x</button>
+            <button
+              className="deleteBtn"
+              onClick={() => deleteCart(cart_id)}
+              type="button"
+            >
+              x
+            </button>
           </div>
           <div className="totalPrice">
             <span className="totalPriceInfo">

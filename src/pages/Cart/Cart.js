@@ -1,4 +1,4 @@
-// import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Product from './Product';
 import BuyConfirm from './BuyConfirm';
@@ -6,15 +6,15 @@ import Button from './Button';
 import './Cart.scss';
 
 const Cart = () => {
-  // const [cartProduct, setCartProduct] = useState([1]);
+  const [cartProduct, setCartProduct] = useState([]);
 
   // useEffect(() => {
-  //   fetch('')
+  //   fetch('http://localhost:3000/src/pages/Cart/cart.json')
   //     .then(res => res.json())
   //     .then(result => setCartProduct(result));
   // }, []);
 
-  const cartProduct = [
+  const mockData = [
     {
       cart_id: 1,
       product_name: '딸기 비스킷 케이크',
@@ -41,6 +41,10 @@ const Cart = () => {
     },
   ];
 
+  useEffect(() => {
+    setCartProduct(mockData);
+  }, []);
+
   const totalPrice = () => {
     let price = 0;
     for (let i = 0; i < cartProduct.length; i++) {
@@ -56,6 +60,15 @@ const Cart = () => {
   //     .then(result => setCartProduct(result));
   // };
 
+  const deleteCart = id => {
+    setCartProduct(cartProduct =>
+      cartProduct.filter(product => product.cart_id !== id)
+    );
+    fetch('http://123.456:8000/delete', {
+      method: 'POST',
+      body: { cart_id: id },
+    });
+  };
   return (
     <main className="cart">
       <header className="cartHeader">
@@ -70,7 +83,9 @@ const Cart = () => {
           {cartProduct.length ? (
             <>
               {cartProduct.map(el => {
-                return <Product data={el} key={el.cart_id} />;
+                return (
+                  <Product data={el} key={el.cart_id} deleteCart={deleteCart} />
+                );
               })}
               <BuyConfirm totalPrice={totalPrice().toLocaleString('ko-KR')} />
               <Button
