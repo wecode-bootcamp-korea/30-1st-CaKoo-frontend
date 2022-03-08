@@ -25,6 +25,7 @@ function Product({ data }) {
                 <button className="increase">+</button>
               </div>
             </div>
+            <button className="deleteBtn">x</button>
           </div>
           <div className="totalPrice">
             <span className="totalPriceInfo">

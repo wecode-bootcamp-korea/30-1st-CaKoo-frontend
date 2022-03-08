@@ -1,12 +1,18 @@
-// import { useState } from 'react';
+// import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Product from './Product';
 import BuyConfirm from './BuyConfirm';
 import Button from './Button';
 import './Cart.scss';
 
-function Cart() {
+const Cart = () => {
   // const [cartProduct, setCartProduct] = useState([1]);
+
+  // useEffect(() => {
+  //   fetch('')
+  //     .then(res => res.json())
+  //     .then(result => setCartProduct(result));
+  // }, []);
 
   const cartProduct = [
     {
@@ -44,6 +50,12 @@ function Cart() {
     return price;
   };
 
+  // const buyProduct = () => {
+  //   fetch('')
+  //     .then(res => res.json())
+  //     .then(result => setCartProduct(result));
+  // };
+
   return (
     <main className="cart">
       <header className="cartHeader">
@@ -61,7 +73,11 @@ function Cart() {
                 return <Product data={el} key={el.cart_id} />;
               })}
               <BuyConfirm totalPrice={totalPrice().toLocaleString('ko-KR')} />
-              <Button className="button" value="구매하기" />
+              <Button
+                className="button"
+                value="구매하기"
+                // onClick={buyProduct}
+              />
             </>
           ) : (
             <>
@@ -80,6 +96,6 @@ function Cart() {
       </div>
     </main>
   );
-}
+};
 
 export default Cart;
