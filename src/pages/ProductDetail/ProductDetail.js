@@ -1,10 +1,10 @@
 // import { useState, useEffect } from 'react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import ProductAdd from './ProductAdd/ProductAdd';
 import './ProductDetail.scss';
 
-function ProductDetail({ match }) {
+function ProductDetail() {
   const [count, setCount] = useState(1);
   const [toggle, setToggle] = useState(false);
   const [addedProduct, setAddedProduct] = useState([]);
@@ -35,6 +35,7 @@ function ProductDetail({ match }) {
 
   function changeSize(event) {
     const sizeAndPrice = event.target.innerText.split(' : ');
+    const sizeId = event.target.key;
     const size = sizeAndPrice[0];
     const price = sizeAndPrice[1];
 
@@ -43,7 +44,7 @@ function ProductDetail({ match }) {
     } else {
       setAddedProduct([
         ...addedProduct,
-        { size: size, price: price, quantity: count },
+        { size_id: sizeId, size: size, price: price, quantity: count },
       ]);
     }
 
@@ -51,8 +52,25 @@ function ProductDetail({ match }) {
     setCount(1);
   }
 
-  function deleteProduct() {
-    setAddedProduct();
+  function deleteProduct(currentSize) {
+    setAddedProduct(prevAdded =>
+      prevAdded.filter(product => product.size !== currentSize)
+    );
+  }
+
+  function changeQuantity(sizeId, currentSize, currentPrice, newQuantity) {
+    setAddedProduct(prevAdded => {
+      const removed = prevAdded.filter(product => product.size !== currentSize);
+      return [
+        ...removed,
+        {
+          size_id: sizeId,
+          size: currentSize,
+          price: currentPrice,
+          quantity: newQuantity,
+        },
+      ];
+    });
   }
 
   const totalPrice = () => {
@@ -66,12 +84,10 @@ function ProductDetail({ match }) {
 
   // const [product, setProduct] = useState({});
 
-  // // 라우터 수정 후 실행할 코드
-  // // const { id } = match.params;
-  // // console.log(id);
-
-  // 임시 id 변수
-  // const id = 1;
+  // 라우터 수정 후 실행할 코드
+  const params = useParams();
+  const { id } = params;
+  // console.log(id);
 
   // useEffect(() => {
   //   fetch(`http://10.58.6.174:8000/products/${id}`, {
@@ -83,6 +99,13 @@ function ProductDetail({ match }) {
   //       setProduct(result.message);
   //     });
   // }, []);
+  function addCart(event) {
+    event.preventDefault();
+    fetch(`http://10.58.6.174:8000/products/${id}`, {
+      method: 'POST',
+      body: addedProduct,
+    });
+  }
 
   // 서버 연결 안 됐을 때 쓸 가짜 데이터
   const product = {
@@ -90,22 +113,10 @@ function ProductDetail({ match }) {
     description: '특별한 날에 어울리는,',
     name: '딸기 쿠키 케이크',
     size_price: [
-      {
-        size: 'mini',
-        price: '30000.00',
-      },
-      {
-        size: '1호',
-        price: '35000.00',
-      },
-      {
-        size: '2호',
-        price: '40000.00',
-      },
-      {
-        size: '3호',
-        price: '45000.00',
-      },
+      { size_id: 1, size: 'mini', price: '30000.00' },
+      { size_id: 2, size: '1호', price: '35000.00' },
+      { size_id: 3, size: '2호', price: '40000.00' },
+      { size_id: 4, size: '3호', price: '45000.00' },
     ],
     discount_rate: '0.80',
     product_images: [
@@ -185,11 +196,11 @@ function ProductDetail({ match }) {
             <div className="quantity">
               <span className="label">수량</span>
               <div className="counter">
-                <button onClick={countDown} className="sizeBtn" type="button">
+                <button onClick={countDown} className="countBtn" type="button">
                   -
                 </button>
                 <span className="count">{count}</span>
-                <button onClick={countUp} className="sizeBtn" type="button">
+                <button onClick={countUp} className="countBtn" type="button">
                   +
                 </button>
               </div>
@@ -208,9 +219,9 @@ function ProductDetail({ match }) {
                 <div className={toggle ? 'show' : 'hide'}>
                   {size_price.map(size => (
                     <button
-                      key={size.size}
+                      key={size.size_id}
                       type="button"
-                      className="sizeOption eachSize"
+                      className="sizeOption"
                       onClick={changeSize}
                     >{`${size.size} : ${Math.round(
                       size.price * discount_rate
@@ -226,7 +237,8 @@ function ProductDetail({ match }) {
                   key={index}
                   name={name}
                   data={product}
-                  deleteProduct
+                  deleteProduct={deleteProduct}
+                  changeQuantity={changeQuantity}
                 />
               ))}
               <div className="priceContainer">
@@ -236,7 +248,9 @@ function ProductDetail({ match }) {
                 )}원`}</span>
               </div>
             </div>
-            <button className="cartBtn">장바구니</button>
+            <button className="cartBtn" onClick={addCart}>
+              장바구니
+            </button>
           </form>
         </div>
       </div>

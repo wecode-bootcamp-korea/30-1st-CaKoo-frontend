@@ -130,9 +130,6 @@
             background-color: white;
             border: 1px solid lightgray;
             border-radius: 5px;
-
-            .eachSize {
-            }
           }
         }
       }
@@ -143,10 +140,11 @@
         align-items: center;
         margin: 20px 0;
 
-        .sizeBtn {
+        .countBtn {
           width: 20px;
           height: 20px;
           border-radius: 50%;
+          color: gray;
         }
 
         .count {

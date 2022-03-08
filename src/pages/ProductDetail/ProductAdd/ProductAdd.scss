@@ -11,5 +11,25 @@
     display: flex;
     justify-content: space-between;
     margin: 10px 0;
+
+    .deleteBtn {
+      all: unset;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .newCountBtn {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: lightgray;
+      color: gray;
+    }
+
+    .newCount {
+      margin: 0 10px;
+    }
   }
 }
