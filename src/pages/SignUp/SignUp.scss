@@ -1,12 +1,11 @@
 @import '/src/styles/variables.scss';
 
 .signUp {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: 90px 0;
   color: $black;
 
   fieldset {
@@ -23,7 +22,7 @@
     font-size: 30px;
     font-weight: bold;
     padding: 40px 0px;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid lightgray;
   }
 
   .row {
@@ -62,6 +61,7 @@
     }
 
     .phone {
+      margin-left: 30px;
       .phone2,
       .phone3 {
         width: 110px;
