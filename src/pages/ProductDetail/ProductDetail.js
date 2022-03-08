@@ -1,15 +1,28 @@
-// import { useState, useEffect } from 'react';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ProductAdd from './ProductAdd/ProductAdd';
 import './ProductDetail.scss';
 
-function ProductDetail() {
+const ProductDetail = () => {
+  // const [product, setProduct] = useState({});
   const [count, setCount] = useState(1);
   const [toggle, setToggle] = useState(false);
   const [addedProduct, setAddedProduct] = useState([]);
 
-  function countDown() {
+  // const params = useParams();
+  // const { id } = params;
+  // console.log(id);
+
+  // useEffect(() => {
+  //   fetch(`http://10.58.6.36:8000/products/${id}`)
+  //     .then(res => res.json())
+  //     .then(result => {
+  //       console.log(result);
+  //       setProduct(result.message);
+  //     });
+  // }, [id]);
+
+  const countDown = () => {
     setCount(prevCount => {
       if (prevCount > 1) {
         return prevCount - 1;
@@ -17,9 +30,9 @@ function ProductDetail() {
         return prevCount;
       }
     });
-  }
+  };
 
-  function countUp() {
+  const countUp = () => {
     setCount(prevCount => {
       if (prevCount < 10) {
         return prevCount + 1;
@@ -27,17 +40,17 @@ function ProductDetail() {
         return prevCount;
       }
     });
-  }
+  };
 
-  function handleSize() {
+  const handleSize = () => {
     setToggle(!toggle);
-  }
+  };
 
-  function changeSize(event) {
+  const changeSize = event => {
     const sizeAndPrice = event.target.innerText.split(' : ');
-    const sizeId = event.target.key;
     const size = sizeAndPrice[0];
     const price = sizeAndPrice[1];
+    const sizeId = event.target.id;
 
     if (addedProduct.map(product => product.size === size).includes(true)) {
       alert('이미 담은 상품입니다!');
@@ -47,18 +60,17 @@ function ProductDetail() {
         { size_id: sizeId, size: size, price: price, quantity: count },
       ]);
     }
-
     setToggle(!toggle);
     setCount(1);
-  }
+  };
 
-  function deleteProduct(currentSize) {
+  const deleteProduct = currentSize => {
     setAddedProduct(prevAdded =>
       prevAdded.filter(product => product.size !== currentSize)
     );
-  }
+  };
 
-  function changeQuantity(sizeId, currentSize, currentPrice, newQuantity) {
+  const changeQuantity = (sizeId, currentSize, currentPrice, newQuantity) => {
     setAddedProduct(prevAdded => {
       const removed = prevAdded.filter(product => product.size !== currentSize);
       return [
@@ -71,7 +83,16 @@ function ProductDetail() {
         },
       ];
     });
-  }
+  };
+
+  // const addCart = event => {
+  //   event.preventDefault();
+  //   fetch("http://10.58.6.174:8000/carts", {
+  //     method: 'POST',
+  //     body: addedProduct.map(product => {product_id: id, size_id: product.size_id, quantity: product.quantity}),
+  //   });
+  //   console.log(addedProduct);
+  // };
 
   const totalPrice = () => {
     let price = 0;
@@ -82,32 +103,8 @@ function ProductDetail() {
     return price;
   };
 
-  // const [product, setProduct] = useState({});
-
-  // 라우터 수정 후 실행할 코드
-  const params = useParams();
-  const { id } = params;
-  // console.log(id);
-
-  // useEffect(() => {
-  //   fetch(`http://10.58.6.174:8000/products/${id}`, {
-  //     method: 'GET',
-  //   })
-  //     .then(res => res.json())
-  //     .then(result => {
-  //       // console.log(result);
-  //       setProduct(result.message);
-  //     });
-  // }, []);
-  function addCart(event) {
-    event.preventDefault();
-    fetch(`http://10.58.6.174:8000/products/${id}`, {
-      method: 'POST',
-      body: addedProduct,
-    });
-  }
-
   // 서버 연결 안 됐을 때 쓸 가짜 데이터
+  const id = 1;
   const product = {
     base_price: 30000,
     description: '특별한 날에 어울리는,',
@@ -146,7 +143,7 @@ function ProductDetail() {
 
   const rate = 1 - discount_rate;
 
-  // if (!product) {
+  // if (!product.length) {
   //   return null;
   // }
 
@@ -217,15 +214,14 @@ function ProductDetail() {
                   사이즈를 선택해주세요.
                 </button>
                 <div className={toggle ? 'show' : 'hide'}>
-                  {size_price.map(size => (
+                  {size_price.map(({ size_id, size, price }) => (
                     <button
-                      key={size.size_id}
+                      key={size_id}
+                      id={size_id}
                       type="button"
                       className="sizeOption"
                       onClick={changeSize}
-                    >{`${size.size} : ${Math.round(
-                      size.price * discount_rate
-                    )}`}</button>
+                    >{`${size} : ${Math.round(price * discount_rate)}`}</button>
                   ))}
                 </div>
               </div>
@@ -248,9 +244,9 @@ function ProductDetail() {
                 )}원`}</span>
               </div>
             </div>
-            <button className="cartBtn" onClick={addCart}>
+            {/* <button className="cartBtn" onClick={addCart}>
               장바구니
-            </button>
+            </button> */}
           </form>
         </div>
       </div>
@@ -262,6 +258,6 @@ function ProductDetail() {
       </div>
     </main>
   );
-}
+};
 
 export default ProductDetail;

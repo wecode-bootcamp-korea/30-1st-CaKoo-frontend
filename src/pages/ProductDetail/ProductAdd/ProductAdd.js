@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './ProductAdd.scss';
 
-function ProductAdd({ changeQuantity, deleteProduct, name, data }) {
+const ProductAdd = ({ changeQuantity, deleteProduct, name, data }) => {
   const { size_id, size, price, quantity } = data;
 
   const [newCount, setNewCount] = useState(quantity);
 
-  function countDown() {
+  const countDown = () => {
     setNewCount(prevCount => {
       if (prevCount > 1) {
         return prevCount - 1;
@@ -14,10 +14,9 @@ function ProductAdd({ changeQuantity, deleteProduct, name, data }) {
         return prevCount;
       }
     });
-    changeQuantity(size_id, size, price, newCount);
-  }
+  };
 
-  function countUp() {
+  const countUp = () => {
     setNewCount(prevCount => {
       if (prevCount < 10) {
         return prevCount + 1;
@@ -25,8 +24,11 @@ function ProductAdd({ changeQuantity, deleteProduct, name, data }) {
         return prevCount;
       }
     });
+  };
+
+  useEffect(() => {
     changeQuantity(size_id, size, price, newCount);
-  }
+  }, [newCount]);
 
   return (
     <div className="productAdd">
@@ -50,6 +52,6 @@ function ProductAdd({ changeQuantity, deleteProduct, name, data }) {
       </div>
     </div>
   );
-}
+};
 
 export default ProductAdd;
