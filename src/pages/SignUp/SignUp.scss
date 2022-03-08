@@ -1,0 +1,190 @@
+@import '/src/styles/variables.scss';
+
+.signUp {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  color: $black;
+
+  fieldset {
+    padding-top: 38px;
+  }
+
+  .signUpForm {
+    width: 620px;
+  }
+
+  .signUpTitle {
+    text-align: center;
+    width: 100vh;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 40px 0px;
+    border-bottom: 1px solid gray;
+  }
+
+  .row {
+    margin: 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    label {
+      font-size: 16px;
+    }
+
+    input {
+      border: 2px solid #ececec;
+      border-radius: 5px;
+      width: 360px;
+      height: 50px;
+      padding: 0px 15px;
+      font-size: 16px;
+    }
+
+    input::placeholder {
+      color: gray;
+    }
+
+    .password {
+      margin-right: 140px;
+    }
+
+    .passwordCheck {
+      margin-right: 140px;
+    }
+
+    .name {
+      margin-right: 140px;
+    }
+
+    .phone {
+      .phone2,
+      .phone3 {
+        width: 110px;
+      }
+
+      input {
+        margin-right: 10px;
+      }
+    }
+
+    .phoneCertify {
+      margin-left: 120px;
+    }
+
+    .birthTitle {
+      padding-bottom: 30px;
+    }
+
+    .birth {
+      margin-right: 130px;
+      padding-bottom: 30px;
+
+      input {
+        margin-right: 10px;
+      }
+    }
+
+    .button {
+      width: 120px;
+      height: 50px;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    .button:disabled {
+      background-color: #ececec;
+    }
+
+    .buttonOn {
+      width: 120px;
+      height: 50px;
+      font-size: 16px;
+      border-radius: 5px;
+      color: white;
+      background-color: black;
+    }
+
+    input:focus {
+      border-color: #f9cc33;
+    }
+
+    .phone input {
+      width: 120px;
+    }
+
+    .birthYear {
+      width: 180px;
+    }
+
+    .birthMonth {
+      width: 80px;
+    }
+
+    .birthDay {
+      width: 80px;
+    }
+  }
+
+  .termConditionBox {
+    margin-top: 25px;
+
+    .termConditionAgreeBox {
+      border: 1px solid $gray;
+      margin-top: 20px;
+      padding: 30px 20px;
+      border-radius: 5px;
+      font-weight: lighter;
+      font-size: 14px;
+
+      .agree {
+        display: flex;
+        margin-top: 17px;
+        font-size: 13px;
+      }
+    }
+
+    b {
+      color: red;
+    }
+
+    .agreeTerms {
+      margin: 25px 0;
+      display: flex;
+      justify-content: center;
+      color: gray;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      a {
+        background-color: white;
+        color: gray;
+        font-size: 12px;
+        padding: 0 10px;
+      }
+    }
+  }
+
+  .signUpBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .button {
+      margin-top: 20px;
+      width: 100%;
+      height: 48px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .button:disabled {
+      background-color: #ececec;
+    }
+  }
+}
