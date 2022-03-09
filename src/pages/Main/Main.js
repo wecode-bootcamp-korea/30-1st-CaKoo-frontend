@@ -1,35 +1,31 @@
 import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Banner from './Banner/Banner';
 import Product from './Product/Product';
 import './Main.scss';
 
 function Main() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [productList, setProductList] = useState([]);
-  const [sort, setSort] = useState('');
+  const [sort, setSort] = useState('recent');
   const [filterSize, setFilterSize] = useState([]);
   const [offset, setOffset] = useState(0);
 
-  const baseUri = 'http://10.58.6.142:8000/products?';
-  const uri = sort
-    ? filterSize.length
-      ? `${baseUri}sort=${sort}&size=${filterSize.join()}`
-      : `${baseUri}sort=${sort}`
-    : filterSize.length
-    ? `${baseUri}size=${filterSize.join()}`
-    : baseUri;
+  const baseUrl = '/';
+  const URI = 'http://10.58.6.142:8000/products';
 
-  useEffect(() => {
-    fetch(`${uri}&offset=${offset}&limit=${(offset + 1) * 8}`)
-      .then(res => res.json())
-      .then(result => {
-        // console.log(result.lists);
-        setProductList(result.lists);
-      });
-  }, [sort, filterSize, offset]);
+  // const uri = sort
+  //   ? filterSize.length
+  //     ? `${baseUri}sort=${sort}&size=${filterSize.join()}`
+  //     : `${baseUri}sort=${sort}`
+  //   : filterSize.length
+  //   ? `${baseUri}size=${filterSize.join()}`
+  //   : baseUri;
 
   // useEffect(() => {
   //   offset > 0 &&
-  //     fetch(`${uri}&offset=${offset}`)
+  //     fetch(`${uri}&offset=${offset}&limit=${(offset + 1) * 8}`)
   //       .then(res => res.json())
   //       .then(result => {
   //         console.log(result.lists);
@@ -37,18 +33,45 @@ function Main() {
   //       });
   // }, [offset]);
 
-  function handleCheck(event) {
+  useEffect(() => {
+    navigate(
+      !filterSize.length
+        ? `${baseUrl}?sort=${sort}&offset=${offset}`
+        : `${baseUrl}?sort=${sort}&size=${filterSize}&offset=${offset}`
+    );
+  }, [filterSize, sort, offset]);
+
+  useEffect(() => {
+    fetch(`${URI}${location.search}`)
+      .then(res => res.json())
+      .then(result => {
+        console.log(result.lists);
+        setProductList(result.lists);
+      });
+  }, [sort, filterSize]);
+
+  useEffect(() => {
+    offset > 0 &&
+      fetch(`${URI}${location.search}`)
+        .then(res => res.json())
+        .then(result => {
+          console.log(offset, result.lists);
+          setProductList(prev => prev.concat(result.lists));
+        });
+  }, [offset]);
+
+  const handleCheck = event => {
     const size = event.target.name;
     if (filterSize.includes(size)) {
       setFilterSize(filterSize.filter(element => element !== size));
     } else {
       setFilterSize([...filterSize, size]);
     }
-  }
+  };
 
-  function addPage() {
+  const addPage = () => {
     setOffset(prev => prev + 1);
-  }
+  };
 
   // const productList = [
   //   {
@@ -70,6 +93,10 @@ function Main() {
   //     thumnail: '/images/strawberry_biscuit_cake.jpeg',
   //   },
   // ];
+
+  if (!productList.length) {
+    return null;
+  }
 
   return (
     <main className="main">
