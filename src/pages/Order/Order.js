@@ -31,7 +31,7 @@ function Order() {
     return sum;
   };
 
-  if (!orderData.order_number) {
+  if (!orderData.user_name) {
     return null;
   }
 
@@ -53,7 +53,7 @@ function Order() {
         <div className="userNameInfoBox">
           <h2>주문자 정보</h2>
           <span>
-            {orderData.sender_name}, {orderData.sender_phone}
+            {orderData.user_name}, {orderData.user_phone}
           </span>
         </div>
         <hr />
@@ -63,7 +63,7 @@ function Order() {
             <input
               type="text"
               className="inputBox"
-              value={orderData.sender_name}
+              value={orderData.user_name}
             />
           </div>
           <div className="userBox">
@@ -71,7 +71,7 @@ function Order() {
             <input
               type="text"
               className="inputBox"
-              value={orderData.sender_phone}
+              value={orderData.user_phone}
             />
           </div>
         </div>
@@ -86,7 +86,7 @@ function Order() {
               <span>이름</span>
               <input
                 className="inputBox orderInput"
-                placeholder={orderData.sender_name}
+                placeholder={orderData.user_name}
                 name="username"
               />
             </div>
@@ -101,7 +101,7 @@ function Order() {
               <span>받는분 이름</span>
               <input
                 className="inputBox orderInput"
-                placeholder={orderData.sender_name}
+                placeholder={orderData.user_name}
                 name="recipient name"
               />
             </div>
@@ -109,7 +109,7 @@ function Order() {
               <span>받는분 연락처</span>
               <input
                 className="inputBox orderInput"
-                placeholder={orderData.sender_phone}
+                placeholder={orderData.user_phone}
                 name="recipient phone"
               />
             </div>
