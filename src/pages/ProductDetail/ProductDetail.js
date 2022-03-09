@@ -4,23 +4,22 @@ import ProductAdd from './ProductAdd/ProductAdd';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
-  // const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({});
   const [count, setCount] = useState(1);
   const [toggle, setToggle] = useState(false);
   const [addedProduct, setAddedProduct] = useState([]);
 
-  // const params = useParams();
-  // const { id } = params;
-  // console.log(id);
+  const params = useParams();
+  const { id } = params;
 
-  // useEffect(() => {
-  //   fetch(`http://10.58.6.36:8000/products/${id}`)
-  //     .then(res => res.json())
-  //     .then(result => {
-  //       console.log(result);
-  //       setProduct(result.message);
-  //     });
-  // }, [id]);
+  useEffect(() => {
+    fetch(`http://10.58.6.143:8000/products/${id}`)
+      .then(res => res.json())
+      .then(result => {
+        console.log(result.message);
+        setProduct(result.message);
+      });
+  }, []);
 
   const countDown = () => {
     setCount(prevCount => {
@@ -85,14 +84,34 @@ const ProductDetail = () => {
     });
   };
 
-  // const addCart = event => {
-  //   event.preventDefault();
-  //   fetch("http://10.58.6.174:8000/carts", {
-  //     method: 'POST',
-  //     body: addedProduct.map(product => {product_id: id, size_id: product.size_id, quantity: product.quantity}),
-  //   });
-  //   console.log(addedProduct);
-  // };
+  const addCart = event => {
+    event.preventDefault();
+    fetch('http://10.58.6.204:8080/carts', {
+      method: 'POST',
+      headers: {
+        Authorization:
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.w1MhoALGWd02twhfZ86Fgc6d2G48gHu4aAbELsEGlEs',
+      },
+      body: JSON.stringify(
+        addedProduct.map(product => {
+          return {
+            product_id: id,
+            size_id: product.size_id,
+            quantity: product.quantity,
+          };
+        })
+      ),
+    });
+    console.log(
+      addedProduct.map(product => {
+        return {
+          product_id: id,
+          size_id: product.size_id,
+          quantity: product.quantity,
+        };
+      })
+    );
+  };
 
   const totalPrice = () => {
     let price = 0;
@@ -104,32 +123,32 @@ const ProductDetail = () => {
   };
 
   // 서버 연결 안 됐을 때 쓸 가짜 데이터
-  const id = 1;
-  const product = {
-    base_price: 30000,
-    description: '특별한 날에 어울리는,',
-    name: '딸기 쿠키 케이크',
-    size_price: [
-      { size_id: 1, size: 'mini', price: '30000.00' },
-      { size_id: 2, size: '1호', price: '35000.00' },
-      { size_id: 3, size: '2호', price: '40000.00' },
-      { size_id: 4, size: '3호', price: '45000.00' },
-    ],
-    discount_rate: '0.80',
-    product_images: [
-      '/images/strawberry_biscuit_cake.jpeg',
-      'https://github.com/Pbang91/cakooimage/blob/main/images/keep/%EA%B3%BC%EC%9D%BC%ED%83%80%EB%A5%B4%ED%8A%B8%EC%BC%80%EC%9D%B4%ED%81%AC.jpeg?raw=true',
-      'https://github.com/Pbang91/cakooimage/blob/main/images/%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3/%E1%84%80%E1%85%B5%E1%84%90%E1%85%A1/%E1%84%80%E1%85%AA%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%A8.png?raw=true',
-      'https://github.com/Pbang91/cakooimage/blob/main/images/%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3/%E1%84%80%E1%85%B5%E1%84%90%E1%85%A1/%E1%84%87%E1%85%A1%E1%84%82%E1%85%A1%E1%84%82%E1%85%A1%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%A8.png?raw=true',
-      'https://github.com/Pbang91/cakooimage/blob/main/images/%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3/%E1%84%89%E1%85%A2%E1%86%BC%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/2.png?raw=true',
-    ],
-    information_images: [
-      'https://github.com/Pbang91/cakooimage/blob/main/images/info_images/info1.jpeg?raw=true',
-      'https://github.com/Pbang91/cakooimage/blob/main/images/info_images/info2.jpeg?raw=true',
-      'https://github.com/Pbang91/cakooimage/blob/main/images/info_images/info3.jpeg?raw=true',
-      'https://github.com/Pbang91/cakooimage/blob/main/images/info_images/info4.jpeg?raw=true',
-    ],
-  };
+  // const id = 1;
+  // const product = {
+  //   base_price: 30000,
+  //   description: '특별한 날에 어울리는,',
+  //   name: '딸기 쿠키 케이크',
+  //   sizes: [
+  //     { size_id: 1, size: 'mini', price: '30000.00' },
+  //     { size_id: 2, size: '1호', price: '35000.00' },
+  //     { size_id: 3, size: '2호', price: '40000.00' },
+  //     { size_id: 4, size: '3호', price: '45000.00' },
+  //   ],
+  //   discount_rate: '0.80',
+  //   product_images: [
+  //     '/images/strawberry_biscuit_cake.jpeg',
+  //     'https://github.com/Pbang91/cakooimage/blob/main/images/keep/%EA%B3%BC%EC%9D%BC%ED%83%80%EB%A5%B4%ED%8A%B8%EC%BC%80%EC%9D%B4%ED%81%AC.jpeg?raw=true',
+  //     'https://github.com/Pbang91/cakooimage/blob/main/images/%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3/%E1%84%80%E1%85%B5%E1%84%90%E1%85%A1/%E1%84%80%E1%85%AA%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%A8.png?raw=true',
+  //     'https://github.com/Pbang91/cakooimage/blob/main/images/%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3/%E1%84%80%E1%85%B5%E1%84%90%E1%85%A1/%E1%84%87%E1%85%A1%E1%84%82%E1%85%A1%E1%84%82%E1%85%A1%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%A8.png?raw=true',
+  //     'https://github.com/Pbang91/cakooimage/blob/main/images/%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3/%E1%84%89%E1%85%A2%E1%86%BC%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/2.png?raw=true',
+  //   ],
+  //   information_images: [
+  //     'https://github.com/Pbang91/cakooimage/blob/main/images/info_images/info1.jpeg?raw=true',
+  //     'https://github.com/Pbang91/cakooimage/blob/main/images/info_images/info2.jpeg?raw=true',
+  //     'https://github.com/Pbang91/cakooimage/blob/main/images/info_images/info3.jpeg?raw=true',
+  //     'https://github.com/Pbang91/cakooimage/blob/main/images/info_images/info4.jpeg?raw=true',
+  //   ],
+  // };
 
   const {
     base_price,
@@ -138,14 +157,14 @@ const ProductDetail = () => {
     information_images,
     name,
     product_images,
-    size_price,
+    sizes,
   } = product;
 
   const rate = 1 - discount_rate;
 
-  // if (!product.length) {
-  //   return null;
-  // }
+  if (!product.name) {
+    return null;
+  }
 
   return (
     <main className="productDetail">
@@ -214,7 +233,7 @@ const ProductDetail = () => {
                   사이즈를 선택해주세요.
                 </button>
                 <div className={toggle ? 'show' : 'hide'}>
-                  {size_price.map(({ size_id, size, price }) => (
+                  {sizes.map(({ size_id, size, price }) => (
                     <button
                       key={size_id}
                       id={size_id}
@@ -244,9 +263,9 @@ const ProductDetail = () => {
                 )}원`}</span>
               </div>
             </div>
-            {/* <button className="cartBtn" onClick={addCart}>
+            <button className="cartBtn" onClick={addCart}>
               장바구니
-            </button> */}
+            </button>
           </form>
         </div>
       </div>
