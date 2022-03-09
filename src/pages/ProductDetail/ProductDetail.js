@@ -16,7 +16,6 @@ const ProductDetail = () => {
     fetch(`http://10.58.6.143:8000/products/${id}`)
       .then(res => res.json())
       .then(result => {
-        console.log(result.message);
         setProduct(result.message);
       });
   }, []);
@@ -102,15 +101,6 @@ const ProductDetail = () => {
         })
       ),
     });
-    console.log(
-      addedProduct.map(product => {
-        return {
-          product_id: id,
-          size_id: product.size_id,
-          quantity: product.quantity,
-        };
-      })
-    );
   };
 
   const totalPrice = () => {
