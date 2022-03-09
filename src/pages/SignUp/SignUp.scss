@@ -181,10 +181,8 @@
       height: 48px;
       border-radius: 5px;
       font-size: 14px;
-    }
-
-    .button:disabled {
-      background-color: #ececec;
+      background-color: black;
+      color: white;
     }
   }
 }
