@@ -11,7 +11,7 @@ function Order() {
   // const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('http://10.58.6.142:8000/orders', {
+    fetch('http://10.58.6.143:8000/orders', {
       method: 'GET',
       headers: {
         Authorization:
@@ -25,6 +25,12 @@ function Order() {
       });
   }, []);
 
+  const totalPrice = () => {
+    let sum = 0;
+    orderData.items.map(item => (sum = sum + item.price));
+    return sum;
+  };
+
   if (!orderData.order_number) {
     return null;
   }
@@ -33,7 +39,7 @@ function Order() {
     <div className="order">
       <h1>주문/결제</h1>
 
-      <div>
+      <div className="userNameInfo">
         <h2>주문내역 확인</h2>
         <hr />
         {orderData.items.map(item => {
@@ -51,13 +57,12 @@ function Order() {
           </span>
         </div>
         <hr />
-        <form className="user">
+        <div className="user">
           <div className="userBox">
             <span>이름</span>
             <input
               type="text"
-              className="userInputBox"
-              name="name"
+              className="inputBox"
               value={orderData.sender_name}
             />
           </div>
@@ -65,43 +70,71 @@ function Order() {
             <span>번호</span>
             <input
               type="text"
-              className="phoneInputBox"
-              name="userphone"
+              className="inputBox"
               value={orderData.sender_phone}
             />
           </div>
-        </form>
+        </div>
       </div>
-      <form className="form">
-        <div className="userForm">
+
+      <form className="orderForm">
+        <div className="userNameInfo">
           <h2>발신인 정보</h2>
           <hr />
-          <input
-            className="orderInput"
-            placeholder={orderData.sender_name}
-            name="username"
-          />
+          <div className="user">
+            <div className="userBox">
+              <span>이름</span>
+              <input
+                className="inputBox orderInput"
+                placeholder={orderData.sender_name}
+                name="username"
+              />
+            </div>
+          </div>
         </div>
-        <div className="orderDetail">
+
+        <div className="userNameInfo">
           <h2>배송지 정보</h2>
           <hr />
-          <input
-            className="orderInput"
-            placeholder="받는분 이름"
-            name="recipient name"
-          />
-          <input
-            className="orderInput"
-            placeholder="받는분 연락쳐"
-            name="recipient phone"
-          />
-          <input className="orderInput" placeholder="받는분 주소" />
+          <div className="user">
+            <div className="userBox">
+              <span>받는분 이름</span>
+              <input
+                className="inputBox orderInput"
+                placeholder={orderData.sender_name}
+                name="recipient name"
+              />
+            </div>
+            <div className="userBox">
+              <span>받는분 연락처</span>
+              <input
+                className="inputBox orderInput"
+                placeholder={orderData.sender_phone}
+                name="recipient phone"
+              />
+            </div>
+            <div className="userBox">
+              <span>받는분 주소</span>
+              <input
+                className="inputBox orderInput"
+                placeholder="주소를 입력해주세요."
+              />
+            </div>
+          </div>
         </div>
-        <div className="orderPayment">
-          <h3>최종 결제 금액</h3>
+
+        <div className="userNameInfo">
+          <h2>최종 결제 금액</h2>
           <hr />
+          <div>
+            <span className="totalPrice">총 상품 금액</span>
+            <span className="totalPrice">
+              {totalPrice().toLocaleString('ko-KR')} 원
+            </span>
+          </div>
         </div>
-        <button type="button" name="paymentBtn">
+
+        <button type="button" className="paymentBtn">
           결제 하기
         </button>
       </form>
