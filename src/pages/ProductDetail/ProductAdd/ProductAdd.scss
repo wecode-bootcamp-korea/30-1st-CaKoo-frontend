@@ -1,0 +1,35 @@
+@import '/src/styles/variables.scss';
+
+.productAdd {
+  margin-bottom: 6px;
+  padding: 15px 25px;
+  background-color: $gray;
+  border-radius: 5px;
+  font-weight: 700;
+
+  .productRow {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+
+    .deleteBtn {
+      all: unset;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .newCountBtn {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: lightgray;
+      color: gray;
+    }
+
+    .newCount {
+      margin: 0 10px;
+    }
+  }
+}
