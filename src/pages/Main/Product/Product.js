@@ -9,7 +9,7 @@ function Product({ data }) {
     discount_rate,
     discount_price,
     description,
-    // sizes,
+    sizes,
     thumbnail,
   } = data;
   return (
@@ -33,15 +33,15 @@ function Product({ data }) {
         <span className="discountedPrice">{`${discount_price}원`}</span>
       </p>
       <p className="otherInfo">
-        {/* {sizes.map((size, index) => (
+        {sizes.map((size, index) => (
           <span key={index} className="productSize">
             {size}
           </span>
-        ))} */}
-        <span className="productSize">mini</span>
+        ))}
+        {/* <span className="productSize">mini</span>
         <span className="productSize">1호</span>
         <span className="productSize">2호</span>
-        <span className="productSize">3호</span>
+        <span className="productSize">3호</span> */}
         <span className="delivery">무료배송</span>
       </p>
     </article>
