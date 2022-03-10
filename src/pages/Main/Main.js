@@ -20,7 +20,7 @@ function Main() {
     : `${baseUri}?`;
 
   useEffect(() => {
-    fetch(`${uri}&offset=${offset}&limit=${(offset + 1) * 8}`)
+    fetch(`${uri}&offset=0&limit=${(offset + 1) * 8}`)
       .then(res => res.json())
       .then(result => {
         // console.log(result.lists);
