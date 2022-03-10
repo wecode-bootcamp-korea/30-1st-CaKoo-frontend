@@ -1,15 +1,26 @@
 import './TextBox.scss';
 
-function TextBox({ type, placeholder, className, name, maxLength, onChange }) {
+function TextBox({
+  children,
+  label,
+  type,
+  placeholder,
+  className,
+  name,
+  onChange,
+}) {
   return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      className={className}
-      name={name}
-      maxLength={maxLength}
-      onChange={onChange}
-    />
+    <div className="row">
+      <label>{label}</label>
+      <input
+        type={type}
+        placeholder={placeholder}
+        className={className}
+        name={name}
+        onChange={onChange}
+      />
+      {children}
+    </div>
   );
 }
 

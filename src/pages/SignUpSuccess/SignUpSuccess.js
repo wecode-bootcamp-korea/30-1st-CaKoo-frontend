@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-import './SignUpSuccess.scss';
+import './SignupSuccess.scss';
 
-function SignUpSuccess() {
+function SignupSuccess() {
   const navigate = useNavigate();
   const goToMain = e => {
     navigate('/');
   };
 
   return (
-    <div className="signUpSuccess">
+    <div className="signupSuccess">
       <div className="box">
         <div className="signUpSuccessTitle">
           <span className="name">김준영님,</span>
@@ -28,4 +28,4 @@ function SignUpSuccess() {
   );
 }
 
-export default SignUpSuccess;
+export default SignupSuccess;

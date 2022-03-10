@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Product from './Product';
+import CartProduct from './CartProduct';
 import BuyConfirm from './BuyConfirm';
 import Button from './Button';
 import './Cart.scss';
@@ -9,48 +9,48 @@ const Cart = () => {
   const [cartProduct, setCartProduct] = useState([]);
   const token = localStorage.getItem('Authorization');
 
-  useEffect(() => {
-    fetch('http://10.58.6.143:8000/carts', {
-      headers: {
-        Authorization: token,
-      },
-    })
-      .then(res => res.json())
-      .then(result => {
-        setCartProduct(result.message);
-      });
-  }, []);
-
-  // const mockData = [
-  //   {
-  //     cart_id: 1,
-  //     product_name: '딸기 비스킷 케이크',
-  //     product_size: 'mini',
-  //     product_price: 49800,
-  //     cart_quantity: 3,
-  //     thumbnail: '/images/strawberry_biscuit_cake.jpeg',
-  //   },
-  //   {
-  //     cart_id: 2,
-  //     product_name: '블루베리 비스킷 케이크',
-  //     product_size: '1호',
-  //     product_price: 59800,
-  //     cart_quantity: 3,
-  //     thumbnail: '/images/strawberry_biscuit_cake.jpeg',
-  //   },
-  //   {
-  //     cart_id: 3,
-  //     product_name: '바닐라 비스킷 케이크',
-  //     product_size: '2호',
-  //     product_price: 79800,
-  //     cart_quantity: 3,
-  //     thumbnail: '/images/strawberry_biscuit_cake.jpeg',
-  //   },
-  // ];
-
   // useEffect(() => {
-  //   setCartProduct(mockData);
+  //   fetch('http://10.58.6.143:8000/carts', {
+  //     headers: {
+  //       Authorization: token,
+  //     },
+  //   })
+  //     .then(res => res.json())
+  //     .then(result => {
+  //       setCartProduct(result.message);
+  //     });
   // }, []);
+
+  const mockData = [
+    {
+      cart_id: 1,
+      product_name: '딸기 비스킷 케이크',
+      product_size: 'mini',
+      product_price: 49800,
+      cart_quantity: 3,
+      thumbnail: '/images/strawberry_biscuit_cake.jpeg',
+    },
+    {
+      cart_id: 2,
+      product_name: '블루베리 비스킷 케이크',
+      product_size: '1호',
+      product_price: 59800,
+      cart_quantity: 3,
+      thumbnail: '/images/strawberry_biscuit_cake.jpeg',
+    },
+    {
+      cart_id: 3,
+      product_name: '바닐라 비스킷 케이크',
+      product_size: '2호',
+      product_price: 79800,
+      cart_quantity: 3,
+      thumbnail: '/images/strawberry_biscuit_cake.jpeg',
+    },
+  ];
+
+  useEffect(() => {
+    setCartProduct(mockData);
+  }, []);
 
   const totalPrice = () => {
     let price = 0;
@@ -65,12 +65,12 @@ const Cart = () => {
     setCartProduct(cartProduct =>
       cartProduct.filter(product => product.cart_id !== id)
     );
-    fetch(`http://10.58.6.143:8000/carts/${id}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: token,
-      },
-    });
+    // fetch(`http://10.58.6.143:8000/carts/${id}`, {
+    //   method: 'DELETE',
+    //   headers: {
+    //     Authorization: token,
+    //   },
+    // });
   };
 
   return (
@@ -88,7 +88,11 @@ const Cart = () => {
             <>
               {cartProduct.map(el => {
                 return (
-                  <Product data={el} key={el.cart_id} deleteCart={deleteCart} />
+                  <CartProduct
+                    data={el}
+                    key={el.cart_id}
+                    deleteCart={deleteCart}
+                  />
                 );
               })}
               <BuyConfirm totalPrice={totalPrice().toLocaleString('ko-KR')} />

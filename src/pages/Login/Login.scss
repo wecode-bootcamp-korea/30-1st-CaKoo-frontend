@@ -30,7 +30,6 @@
       padding: 0 20px;
       line-height: 50px;
       border-radius: 5px;
-      color: #ececec;
       border-color: #ececec;
 
       .loginInput {
@@ -44,8 +43,7 @@
         font-size: 14px;
         line-height: 50px;
         border-radius: 5px;
-        color: #ececec;
-        border-color: #ececec;
+        border: 1px solid lightgray;
       }
 
       .idSave {
