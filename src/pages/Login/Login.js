@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import API from '../../config';
 import './Login.scss';
 
 function Login() {
@@ -55,7 +56,7 @@ function Login() {
   const navigate = useNavigate();
 
   const handleFetch = () => {
-    fetch('http://10.58.1.89:8000/users/signin', {
+    fetch(API.signin, {
       method: 'POST',
       body: JSON.stringify({
         email: idValue,

@@ -34,7 +34,11 @@ const ProductAdd = ({ changeQuantity, deleteProduct, name, data }) => {
     <div className="productAdd">
       <div className="productRow">
         <span>{`${name} ${size}`}</span>
-        <button className="deleteBtn" onClick={() => deleteProduct(size)}>
+        <button
+          className="deleteBtn"
+          onClick={() => deleteProduct(size)}
+          type="button"
+        >
           X
         </button>
       </div>
@@ -48,7 +52,7 @@ const ProductAdd = ({ changeQuantity, deleteProduct, name, data }) => {
             +
           </button>
         </div>
-        <span>{`${price * newCount}원`}</span>
+        <span>{`${(price * newCount).toLocaleString('ko-KR')}원`}</span>
       </div>
     </div>
   );

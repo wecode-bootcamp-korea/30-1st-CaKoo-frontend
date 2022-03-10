@@ -3,12 +3,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 import Main from './pages/Main/Main';
-import Signup from './pages/Signup/Signup';
+import Signup from './pages/Signup/SignUp';
 import Login from './pages/Login/Login';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Cart from './pages/Cart/Cart';
-import SignupSuccess from './pages/SignupSuccess/SignupSuccess';
+import SignupSuccess from './pages/SignupSuccess/SignUpSuccess';
 import Order from './pages/Order/Order';
+import BuySuccess from './pages/BuySuccess/BuySuccess';
 
 function Router() {
   return (
@@ -22,6 +23,7 @@ function Router() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/signup-success" element={<SignupSuccess />} />
         <Route path="/order" element={<Order />} />
+        <Route path="/buy-success" element={<BuySuccess />} />
       </Routes>
       <Footer />
     </BrowserRouter>

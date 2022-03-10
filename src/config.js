@@ -5,6 +5,7 @@ const API = {
   products: `${BASE_URL}/products`,
   carts: `${BASE_URL}/carts`,
   orders: `${BASE_URL}/orders`,
+  buysuccess: `${BASE_URL}/buy-success`,
 };
 
 export default API;

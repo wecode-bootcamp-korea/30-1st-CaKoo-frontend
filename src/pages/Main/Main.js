@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Banner from './Banner/Banner';
 import Product from './Product/Product';
+import API from '../../config';
 import './Main.scss';
 
 function Main() {
@@ -9,14 +10,14 @@ function Main() {
   const [filterSize, setFilterSize] = useState([]);
   const [offset, setOffset] = useState(0);
 
-  const baseUri = 'http://10.58.6.142:8000/products?';
+  const baseUri = API.products;
   const uri = sort
     ? filterSize.length
-      ? `${baseUri}sort=${sort}&size=${filterSize.join()}`
-      : `${baseUri}sort=${sort}`
+      ? `?${baseUri}sort=${sort}&size=${filterSize.join()}`
+      : `?${baseUri}sort=${sort}`
     : filterSize.length
-    ? `${baseUri}size=${filterSize.join()}`
-    : baseUri;
+    ? `?${baseUri}size=${filterSize.join()}`
+    : `${baseUri}?`;
 
   useEffect(() => {
     fetch(`${uri}&offset=${offset}&limit=${(offset + 1) * 8}`)

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Signup.scss';
+import './SignUp.scss';
+import API from '../../config';
 import TextBox from './TextBox';
 
 function Signup() {
@@ -24,7 +25,7 @@ function Signup() {
   };
 
   const goToSignUp = () => {
-    fetch('http://10.58.1.89:8000/users/signup', {
+    fetch(API.signup, {
       method: 'POST',
       body: JSON.stringify({
         email: signUpInfo.id,

@@ -3,22 +3,22 @@ import { Link } from 'react-router-dom';
 import CartProduct from './CartProduct';
 import BuyConfirm from './BuyConfirm';
 import Button from './Button';
+import API from '../../config';
 import './Cart.scss';
 
 const Cart = () => {
   const [cartProduct, setCartProduct] = useState({});
-  const token = localStorage.getItem('Authorization');
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('http://10.58.1.89:8000/carts', {
+    fetch(API.carts, {
       headers: {
         Authorization: token,
       },
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result.message);
-        setCartProduct(result.message.data);
+        setCartProduct(result.result.data);
       });
   }, []);
 
@@ -66,7 +66,7 @@ const Cart = () => {
     setCartProduct(cartProduct =>
       cartProduct.filter(product => product.cart_id !== id)
     );
-    fetch(`http://10.58.1.89:8000/carts/${id}`, {
+    fetch(`${API.carts}/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: token,
