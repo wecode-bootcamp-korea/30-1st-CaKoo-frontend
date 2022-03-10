@@ -109,8 +109,15 @@ function Login() {
           </button>
         </form>
         <div className="forgotContainer">
-          <Link to="/" className="forgot" alt="아이디 찾기" /> 아이디찾기
-          <Link to="/" className="forgot" alt="비밀번호 찾기" /> 비밀번호 찾기
+          <Link to="/" className="forgot">
+            아이디찾기
+          </Link>
+          <Link to="/" className="forgot">
+            비밀번호 찾기
+          </Link>
+          <Link to="/signup" className="forgot">
+            회원가입
+          </Link>
         </div>
       </div>
     </div>

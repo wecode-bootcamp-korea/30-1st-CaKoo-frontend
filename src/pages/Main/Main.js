@@ -28,16 +28,6 @@ function Main() {
       });
   }, [sort, filterSize, offset]);
 
-  // useEffect(() => {
-  //   offset > 0 &&
-  //     fetch(`${uri}&offset=${offset}`)
-  //       .then(res => res.json())
-  //       .then(result => {
-  //         console.log(result.lists);
-  //         setProductList(prev => prev.concat(result.lists));
-  //       });
-  // }, [offset]);
-
   function handleCheck(event) {
     const size = event.target.name;
     if (filterSize.includes(size)) {
@@ -50,27 +40,6 @@ function Main() {
   function addPage() {
     setOffset(prev => prev + 1);
   }
-
-  // const productList = [
-  //   {
-  //     id: 1,
-  //     name: '딸기 쿠키 케이크',
-  //     description: '특별한 날에 어울리는,',
-  //     discount_rate: 0.1,
-  //     price: 32000,
-  //     sizes: ['1호', '2호'],
-  //     thumnail: '/images/strawberry_biscuit_cake.jpeg',
-  //   },
-  //   {
-  //     id: 2,
-  //     name: '딸기 쿠키 케이크',
-  //     description: '특별한 날에 어울리는,',
-  //     discount_rate: 0.1,
-  //     price: 32000,
-  //     sizes: ['1호', '2호'],
-  //     thumnail: '/images/strawberry_biscuit_cake.jpeg',
-  //   },
-  // ];
 
   return (
     <main className="main">

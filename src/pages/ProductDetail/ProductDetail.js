@@ -70,13 +70,6 @@ const ProductDetail = () => {
   };
 
   const changeQuantity = (sizeId, currentSize, currentPrice, newQuantity) => {
-    // prevAdded => {
-    //   const index = prevAdded.findIndex(ele => ele.size === currentSize);
-
-    //   prevAdded[index] = newEle;
-    //   // console.log(prevAdded);
-    //   return prevAdded;
-    // }
     const newEle = {
       size_id: sizeId,
       size: currentSize,
@@ -255,10 +248,11 @@ const ProductDetail = () => {
         </div>
       </div>
 
-      <div>
-        {information_images.map((image, index) => (
+      <div className="detailImage">
+        {/* {information_images.map((image, index) => (
           <img alt="상품 상세 컷" key={index} src={image} />
-        ))}
+        ))} */}
+        <img alt="상품 상세 컷" src="/images/cake.jpg" />
       </div>
     </main>
   );
