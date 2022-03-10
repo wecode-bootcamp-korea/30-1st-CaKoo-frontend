@@ -1,6 +1,6 @@
 @import '/src/styles/variables.scss';
 
-.signUp {
+.signup {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,6 +46,7 @@
 
     input::placeholder {
       color: gray;
+      font-size: 15px;
     }
 
     .password {

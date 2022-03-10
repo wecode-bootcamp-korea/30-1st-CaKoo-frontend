@@ -1,11 +1,11 @@
-import './Product.scss';
+import './CartProduct.scss';
 
-function Product({ data, deleteCart }) {
+function CartProduct({ data, deleteCart }) {
   const { product_price, product_name, product_size, cart_quantity, cart_id } =
     data;
 
   return (
-    <div className="product">
+    <div className="cartProduct">
       <div className="productList">
         <div className="productInfoBox">
           <div className="productInfo">
@@ -14,7 +14,7 @@ function Product({ data, deleteCart }) {
               src="/images/strawberry_biscuit_cake.jpeg"
               alt=""
             />
-            <div className="productDetail">
+            <div className="cartProductDetail">
               <span className="productName">{product_name}</span>
               <span className="productSize">사이즈 : {product_size}</span>
               <span className="productPrice">
@@ -45,4 +45,4 @@ function Product({ data, deleteCart }) {
     </div>
   );
 }
-export default Product;
+export default CartProduct;

@@ -67,7 +67,7 @@ function Login() {
             text="password"
           />
           <div className="idSave">
-            <input id="checkbox" className="checkBox" type="checked" />
+            <input id="checkbox" className="checkBox" type="checkbox" />
             <label htmlFor="checkbox" className="circle" />
             <span>아이디 저장</span>
           </div>
