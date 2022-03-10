@@ -7,6 +7,7 @@ import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Cart from './pages/Cart/Cart';
+import Order from './pages/Order/Order';
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
         <Route path="/login" element={<Login />} />
         <Route path="/product-detail/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/order" element={<Order />} />
       </Routes>
       <Footer />
     </BrowserRouter>
