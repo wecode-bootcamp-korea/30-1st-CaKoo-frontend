@@ -8,6 +8,7 @@ import Login from './pages/Login/Login';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Cart from './pages/Cart/Cart';
 import SignupSuccess from './pages/SignupSuccess/SignupSuccess';
+import Order from './pages/Order/Order';
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/signup-success" element={<SignupSuccess />} />
+        <Route path="/order" element={<Order />} />
       </Routes>
       <Footer />
     </BrowserRouter>
