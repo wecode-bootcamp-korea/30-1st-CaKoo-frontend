@@ -1,0 +1,129 @@
+@import '/src/styles/variables.scss';
+
+.order {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 90px;
+  font-weight: bold;
+  font-size: 20px;
+
+  h1 {
+    margin: 20px 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+  }
+
+  .userNameInfo {
+    width: 600px;
+    margin-top: 50px;
+
+    .userNameInfoBox {
+      display: flex;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    span {
+      padding-left: 12px;
+      font-size: 14px;
+      color: lightgrey;
+    }
+
+    .user {
+      display: flex;
+      flex-direction: column;
+
+      .userBox {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 0;
+        width: 100%;
+
+        span {
+          font-size: 18px;
+          color: #222222;
+        }
+
+        .inputBox {
+          width: 350px;
+          height: 50px;
+          padding-left: 20px;
+          line-height: 50px;
+          border-radius: 5px;
+          font-size: 16px;
+          background-color: $gray;
+          border: solid 1px lightgray;
+        }
+
+        .orderInput {
+          background-color: white;
+        }
+      }
+    }
+  }
+
+  .orderForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .totalPrice {
+      color: black;
+      font-size: 18px;
+    }
+
+    .paymentBtn {
+      width: 300px;
+      height: 50px;
+      margin-top: 50px;
+      line-height: 50px;
+      border-radius: 5px;
+      font-size: 15px;
+      text-align: center;
+      background-color: #f9cc33;
+    }
+  }
+}
+
+.orderList {
+  display: flex;
+  margin-top: 20px;
+
+  img {
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: cover;
+  }
+
+  .box {
+    display: flex;
+    flex-direction: column;
+
+    .item1 {
+      width: 400px;
+      margin-left: 10px;
+      margin-bottom: 14px;
+      font-size: 18px;
+    }
+    .item2,
+    .item3 {
+      margin-left: 10px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: lightgrey;
+    }
+  }
+  .price {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+}

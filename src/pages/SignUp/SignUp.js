@@ -72,7 +72,7 @@ function SignUp() {
               onChange={(handleChange, handleIdInput)}
             />
             <Button className={idValue.includes('@') ? 'buttonOn' : 'button'}>
-              중복확인
+              O
             </Button>
           </div>
           <div className="row">
@@ -106,7 +106,7 @@ function SignUp() {
             />
           </div>
           <div className="row">
-            <label>휴대폰 본인인증</label>
+            <label>휴대폰 번호</label>
             <div className="phone">
               <TextBox
                 type="text"
@@ -138,10 +138,10 @@ function SignUp() {
                   : 'button'
               }
             >
-              확인
+              O
             </Button>
           </div>
-          <div className="row">
+          {/* <div className="row">
             <TextBox
               type="text"
               placeholder="인증번호를 입력해주세요"
@@ -149,7 +149,7 @@ function SignUp() {
               onChange={handleChange}
             />
             <Button className="button">확인</Button>
-          </div>
+          </div> */}
           <div className="row">
             <label className="birthTitle">생년월일</label>
             <div className="birth">
