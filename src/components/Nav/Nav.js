@@ -14,9 +14,9 @@ function Nav() {
         <li>
           <Link to="/sign-up">회원가입</Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/cart">장바구니</Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );
