@@ -1,44 +1,73 @@
 import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Banner from './Banner/Banner';
 import Product from './Product/Product';
 import API from '../../config';
 import './Main.scss';
 
 function Main() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [productList, setProductList] = useState([]);
-  const [sort, setSort] = useState('');
+  const [sort, setSort] = useState('recent');
   const [filterSize, setFilterSize] = useState([]);
   const [offset, setOffset] = useState(0);
 
-  const baseUri = API.products;
-  const uri = sort
-    ? filterSize.length
-      ? `?${baseUri}sort=${sort}&size=${filterSize.join()}`
-      : `?${baseUri}sort=${sort}`
-    : filterSize.length
-    ? `?${baseUri}size=${filterSize.join()}`
-    : `${baseUri}?`;
+  const URI = API.products;
+  const filterSortUrl = !filterSize.length
+    ? `?sort=${sort}`
+    : `?sort=${sort}&size=${filterSize}`;
+
+  const offsetUrl = `/${
+    location.search.includes('&offset')
+      ? location.search.split('&offset')[0]
+      : location.search
+  }&offset=${offset * 8}`;
 
   useEffect(() => {
-    fetch(`${uri}&offset=0&limit=${(offset + 1) * 8}`)
+    navigate(filterSortUrl);
+  }, [sort, filterSize]);
+
+  useEffect(() => {
+    console.log(`${URI}${location.search}`);
+    fetch(`${URI}${location.search}`)
       .then(res => res.json())
       .then(result => {
-        // console.log(result.lists);
+        console.log(location.search, result.lists);
         setProductList(result.lists);
       });
-  }, [sort, filterSize, offset]);
+  }, [location.search]);
 
-  function handleCheck(event) {
+  useEffect(() => {
+    if (offset > 0) {
+      navigate(offsetUrl);
+      fetch(`${URI}${location.search}`)
+        .then(res => res.json())
+        .then(result => {
+          console.log(result.lists, location.search, offset * 8, productList);
+          // console.log(productList.concat(result.lists));
+          const newList = productList.concat(result.lists);
+          setProductList(newList);
+          // setProductList(prev => prev.concat(result.lists));
+        });
+    }
+  }, [offset]);
+
+  const handleCheck = event => {
     const size = event.target.name;
     if (filterSize.includes(size)) {
       setFilterSize(filterSize.filter(element => element !== size));
     } else {
       setFilterSize([...filterSize, size]);
     }
-  }
+  };
 
-  function addPage() {
+  const addPage = () => {
     setOffset(prev => prev + 1);
+  };
+
+  if (!productList.length) {
+    return null;
   }
 
   return (
@@ -100,8 +129,8 @@ function Main() {
       </div>
 
       <div className="productContainer">
-        {productList.map(data => (
-          <Product key={data.id} data={data} />
+        {productList.map((data, index) => (
+          <Product key={index} data={data} />
         ))}
       </div>
       <button className="moreProduct" onClick={addPage}>
