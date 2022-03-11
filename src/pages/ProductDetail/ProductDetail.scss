@@ -28,6 +28,7 @@
       .mainImage {
         margin-bottom: 18px;
         width: 100%;
+        border-radius: 1px;
       }
 
       .smallImages {
@@ -36,12 +37,13 @@
         width: 100%;
 
         .smallImage {
+          border-radius: 1px;
           width: 17%;
         }
       }
     }
 
-    .order {
+    .orderForm {
       // width: 50%;
       // padding-left: 3.5%;
 
@@ -173,6 +175,17 @@
         border-radius: 10px;
         font-size: 18px;
       }
+    }
+  }
+
+  .detailImage {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0;
+    width: 100%;
+
+    img {
+      width: 80%;
     }
   }
 }

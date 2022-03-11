@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Signup.scss';
+import './SignUp.scss';
+import API from '../../config';
 import TextBox from './TextBox';
 
 function Signup() {
@@ -8,6 +9,7 @@ function Signup() {
   const [signUpInfo, setSignUpInfo] = useState({
     id: '',
     password: '',
+    passwordCheck: '',
     name: '',
     phone1: '',
     phone2: '',
@@ -23,7 +25,7 @@ function Signup() {
   };
 
   const goToSignUp = () => {
-    fetch('http://10.58.6.142:8000/users/signup', {
+    fetch(API.signup, {
       method: 'POST',
       body: JSON.stringify({
         email: signUpInfo.id,
@@ -36,7 +38,17 @@ function Signup() {
       .then(res => res.json())
       .then(result => {
         // console.log(result.message);
-        result.message === 'User Created!' && navigate('/signup-success');
+        if (result.message === 'User Created!') {
+          navigate('/signup-success');
+        } else if (result.message === 'Invalid Email!') {
+          alert('이메일 조건에 밎지 않습니다!');
+        } else if (result.message === 'Invalid Password!') {
+          alert('비밀번호 조건에 맞지 않습니다!');
+        } else if (result.message === 'Email Already Exists!') {
+          alert('중복된 이메일입니다!');
+        } else if (result.message === 'KEY_ERROR') {
+          alert('정보를 모두 입력해주세요!');
+        }
       });
   };
 
@@ -56,6 +68,29 @@ function Signup() {
   //     name: 'passwordCheck',
   //   },
   // ];
+
+  const spcString = [
+    '!',
+    '~',
+    '@',
+    '#',
+    '$',
+    '%',
+    '^',
+    '&',
+    '*',
+    '(',
+    ')',
+    '_',
+    '+',
+    '|',
+    '<',
+    '>',
+    '?',
+    ':',
+    '{',
+    '}',
+  ];
 
   return (
     <main className="signup">
@@ -86,7 +121,7 @@ function Signup() {
               }
               disabled
             >
-              0
+              O
             </button>
           </TextBox>
           <TextBox
@@ -104,7 +139,22 @@ function Signup() {
             className="passwordCheck"
             name="passwordCheck"
             onChange={handleChange}
-          />
+          >
+            <button
+              className={
+                signUpInfo.password === signUpInfo.passwordCheck &&
+                signUpInfo.password.length >= 8 &&
+                spcString
+                  .map(str => signUpInfo.password.includes(str))
+                  .includes(true)
+                  ? 'buttonOn'
+                  : 'button'
+              }
+              disabled
+            >
+              O
+            </button>
+          </TextBox>
           <TextBox
             label="이름"
             type="text"

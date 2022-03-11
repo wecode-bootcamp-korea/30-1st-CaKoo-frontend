@@ -46,6 +46,10 @@
         border: 1px solid lightgray;
       }
 
+      input:focus {
+        border-color: #f9cc33;
+      }
+
       .idSave {
         width: 100%;
 
@@ -82,15 +86,15 @@
     .forgotContainer {
       display: flex;
       justify-content: center;
-      margin-top: 10px;
-      width: 200px;
+      margin-top: 30px;
+      width: 100%;
 
       .forgot {
+        margin-left: 20px;
         font-size: 16px;
-        color: #787878;
 
-        &:last-child {
-          margin-left: 20px;
+        &:first-child {
+          margin-left: 0px;
         }
       }
     }

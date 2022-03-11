@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import ProductAdd from './ProductAdd/ProductAdd';
+import API from '../../config';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
@@ -8,12 +9,12 @@ const ProductDetail = () => {
   const [count, setCount] = useState(1);
   const [toggle, setToggle] = useState(false);
   const [addedProduct, setAddedProduct] = useState([]);
-
+  const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
 
   useEffect(() => {
-    fetch(`http://10.58.6.143:8000/products/${id}`)
+    fetch(`${API.products}/${id}`)
       .then(res => res.json())
       .then(result => {
         setProduct(result.message);
@@ -69,38 +70,45 @@ const ProductDetail = () => {
   };
 
   const changeQuantity = (sizeId, currentSize, currentPrice, newQuantity) => {
-    setAddedProduct(prevAdded => {
-      const removed = prevAdded.filter(product => product.size !== currentSize);
-      return [
-        ...removed,
-        {
-          size_id: sizeId,
-          size: currentSize,
-          price: currentPrice,
-          quantity: newQuantity,
-        },
-      ];
-    });
+    const newEle = {
+      size_id: sizeId,
+      size: currentSize,
+      price: currentPrice,
+      quantity: newQuantity,
+    };
+
+    const targetIndex = addedProduct.findIndex(ele => ele.size === currentSize);
+    const newArr = addedProduct.slice();
+    newArr[targetIndex] = newEle;
+
+    setAddedProduct(newArr);
   };
 
   const addCart = event => {
     event.preventDefault();
-    fetch('http://10.58.6.204:8080/carts', {
-      method: 'POST',
-      headers: {
-        Authorization:
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.w1MhoALGWd02twhfZ86Fgc6d2G48gHu4aAbELsEGlEs',
-      },
-      body: JSON.stringify(
-        addedProduct.map(product => {
-          return {
-            product_id: id,
-            size_id: product.size_id,
-            quantity: product.quantity,
-          };
-        })
-      ),
-    });
+    if (!token) {
+      alert('로그인해주세요.');
+      navigate('/login');
+    } else {
+      fetch(API.carts, {
+        method: 'POST',
+        headers: {
+          Authorization: token,
+        },
+        body: JSON.stringify(
+          addedProduct.map(product => {
+            return {
+              product_id: id,
+              size_id: product.size_id,
+              quantity: product.quantity,
+            };
+          })
+        ),
+      }).then(() => {
+        alert('장바구니에 상품이 담겼습니다.');
+        setAddedProduct([]);
+      });
+    }
   };
 
   const totalPrice = () => {
@@ -112,33 +120,7 @@ const ProductDetail = () => {
     return price;
   };
 
-  // 서버 연결 안 됐을 때 쓸 가짜 데이터
-  // const id = 1;
-  // const product = {
-  //   base_price: 30000,
-  //   description: '특별한 날에 어울리는,',
-  //   name: '딸기 쿠키 케이크',
-  //   sizes: [
-  //     { size_id: 1, size: 'mini', price: '30000.00' },
-  //     { size_id: 2, size: '1호', price: '35000.00' },
-  //     { size_id: 3, size: '2호', price: '40000.00' },
-  //     { size_id: 4, size: '3호', price: '45000.00' },
-  //   ],
-  //   discount_rate: '0.80',
-  //   product_images: [
-  //     '/images/strawberry_biscuit_cake.jpeg',
-  //     'https://github.com/Pbang91/cakooimage/blob/main/images/keep/%EA%B3%BC%EC%9D%BC%ED%83%80%EB%A5%B4%ED%8A%B8%EC%BC%80%EC%9D%B4%ED%81%AC.jpeg?raw=true',
-  //     'https://github.com/Pbang91/cakooimage/blob/main/images/%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3/%E1%84%80%E1%85%B5%E1%84%90%E1%85%A1/%E1%84%80%E1%85%AA%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%A8.png?raw=true',
-  //     'https://github.com/Pbang91/cakooimage/blob/main/images/%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3/%E1%84%80%E1%85%B5%E1%84%90%E1%85%A1/%E1%84%87%E1%85%A1%E1%84%82%E1%85%A1%E1%84%82%E1%85%A1%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%A8.png?raw=true',
-  //     'https://github.com/Pbang91/cakooimage/blob/main/images/%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3/%E1%84%89%E1%85%A2%E1%86%BC%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/2.png?raw=true',
-  //   ],
-  //   information_images: [
-  //     'https://github.com/Pbang91/cakooimage/blob/main/images/info_images/info1.jpeg?raw=true',
-  //     'https://github.com/Pbang91/cakooimage/blob/main/images/info_images/info2.jpeg?raw=true',
-  //     'https://github.com/Pbang91/cakooimage/blob/main/images/info_images/info3.jpeg?raw=true',
-  //     'https://github.com/Pbang91/cakooimage/blob/main/images/info_images/info4.jpeg?raw=true',
-  //   ],
-  // };
+  useEffect(() => {}, [addedProduct]);
 
   const {
     base_price,
@@ -151,6 +133,8 @@ const ProductDetail = () => {
   } = product;
 
   const rate = 1 - discount_rate;
+
+  const token = localStorage.getItem('token');
 
   if (!product.name) {
     return null;
@@ -182,15 +166,17 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        <div className="order">
+        <div className="orderForm">
           <p className="description">{description}</p>
           <h1 className="productName">{name}</h1>
           <p className="priceInfo">
-            <span className="discountRate">{`${Math.round(rate * 100)}%`}</span>
-            <del className="listPrice">{`${base_price}원`}</del>
+            <span className="discountRate">{Math.round(rate * 100)}%</span>
+            <del className="listPrice">
+              {parseInt(base_price).toLocaleString('ko-KR')}원
+            </del>
             <span className="realPrice">{`${Math.round(
               base_price * discount_rate
-            )}원`}</span>
+            ).toLocaleString('ko-KR')}원`}</span>
           </p>
           <hr />
           <p className="deliveryInfo">
@@ -230,7 +216,9 @@ const ProductDetail = () => {
                       type="button"
                       className="sizeOption"
                       onClick={changeSize}
-                    >{`${size} : ${Math.round(price * discount_rate)}`}</button>
+                    >
+                      {`${size} : ${Math.round(price * discount_rate)}`}
+                    </button>
                   ))}
                 </div>
               </div>
@@ -260,10 +248,11 @@ const ProductDetail = () => {
         </div>
       </div>
 
-      <div>
-        {information_images.map((image, index) => (
+      <div className="detailImage">
+        {/* {information_images.map((image, index) => (
           <img alt="상품 상세 컷" key={index} src={image} />
-        ))}
+        ))} */}
+        <img alt="상품 상세 컷" src="/images/cake.jpg" />
       </div>
     </main>
   );

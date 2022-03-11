@@ -1,6 +1,6 @@
 @import '/src/styles/variables.scss';
 
-.signupSuccess {
+.buySuccess {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,7 +15,7 @@
     margin-top: 85px;
     background-color: $yellow;
 
-    .signUpSuccessTitle {
+    .buySuccessTitle {
       font-size: 40px;
       display: flex;
       flex-direction: column;

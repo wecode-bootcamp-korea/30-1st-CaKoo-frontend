@@ -14,7 +14,7 @@ function Product({ data }) {
   } = data;
   return (
     <article className="product">
-      <Link to={`/product-detail/${id}`}>
+      <Link to={`/product/${id}`}>
         <img
           alt="상품 미리보기(샘플)"
           className="productImage"

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import API from '../../config';
 import './Login.scss';
 
 function Login() {
@@ -13,11 +14,38 @@ function Login() {
 
   const handlePwInput = e => {
     setPwValue(e.target.value);
-    console.log(idValue, pwValue);
   };
 
+  const spcString = [
+    '~',
+    '!',
+    '@',
+    '#',
+    '$',
+    '%',
+    '^',
+    '&',
+    '*',
+    '(',
+    ')',
+    '_',
+    '+',
+    '|',
+    '<',
+    '>',
+    '?',
+    ':',
+    '{',
+    '}',
+  ];
+
   const isValid = () => {
-    if (idValue.includes('@') && pwValue.length >= 8) {
+    if (
+      idValue.includes('@') &&
+      idValue.includes('.') &&
+      pwValue.length >= 8 &&
+      spcString.map(str => pwValue.includes(str)).includes(true)
+    ) {
       return true;
     }
     return false;
@@ -28,7 +56,7 @@ function Login() {
   const navigate = useNavigate();
 
   const handleFetch = () => {
-    fetch('http://10.58.6.174:8000/users/signin', {
+    fetch(API.signin, {
       method: 'POST',
       body: JSON.stringify({
         email: idValue,
@@ -41,7 +69,7 @@ function Login() {
           localStorage.setItem('token', result.access_token);
           navigate('/');
         } else {
-          alert('가입된 회원이 아닙니다. 회원가입을 먼저 해주세요.');
+          alert('아이디와 비밀번호를 확인해주세요!');
         }
       });
   };
@@ -61,7 +89,7 @@ function Login() {
           <input
             required
             className="loginInput"
-            type="text"
+            type="password"
             onChange={handlePwInput}
             placeholder="비밀번호"
             text="password"
@@ -81,8 +109,15 @@ function Login() {
           </button>
         </form>
         <div className="forgotContainer">
-          <Link to="/" className="forgot" alt="아이디 찾기" /> 아이디찾기
-          <Link to="/" className="forgot" alt="비밀번호 찾기" /> 비밀번호 찾기
+          <Link to="/" className="forgot">
+            아이디찾기
+          </Link>
+          <Link to="/" className="forgot">
+            비밀번호 찾기
+          </Link>
+          <Link to="/signup" className="forgot">
+            회원가입
+          </Link>
         </div>
       </div>
     </div>
